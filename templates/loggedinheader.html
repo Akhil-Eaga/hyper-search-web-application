@@ -28,10 +28,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
     <!-- Custom but common styles -->
-    <link rel="stylesheet" href="{{url_for('.static', filename = 'styles.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/styles.css')}}">
 
     <!-- Add custom style sheets from individual html pages -->
     {% block styles %}
+    {% endblock %}
+
+    <!-- Add custom javascripts from individual html pages -->
+    {% block scripts %}
     {% endblock %}
 
 </head>
@@ -69,6 +73,8 @@
             </ul>
         </div>
     </nav>
+
+    <!-- content will be inserted from other templates -->
     {% block content %}
     {% endblock %}
 </body>
