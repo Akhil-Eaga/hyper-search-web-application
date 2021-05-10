@@ -1,9 +1,26 @@
-* {
-    font-family: 'Times New Roman', Times, serif, "sans-serif";
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/static/images/homepage-hero-image.jfif);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-#home-page-heading{
-    color: black;
-    font-size: 10rem;
-    font-style: italic !important;
+.container {
+    margin-top: 20vh;
+}
+
+.home-page-heading-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+
+#home-page-heading {
+    color: white;
+}
+
+p{
+    color: white;
 }

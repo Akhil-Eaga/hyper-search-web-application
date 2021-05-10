@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/indexpage.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/indexpage.css') }}">
 {% endblock %}
 
 
@@ -17,7 +17,9 @@
 {% endfor %}
 
 <div class="container">
-    <h1 id="home-page-heading">Hyper Search</h1>
+    <div class="home-page-heading-container">
+        <h1 id="home-page-heading">Hyper Search</h1>
+    </div>
     <p>Learn to search the Google effectively</p>
 
     <p>In this web application, you will learn some useful techniques that will help you find what you want quickly on

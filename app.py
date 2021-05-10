@@ -49,7 +49,7 @@ class LoginForm(FlaskForm):
 # Email("This field requires a valid email address"),
 # registrattion form to create the form fields and data validation
 class RegisterForm(FlaskForm):
-    email = StringField("Email", validators=[InputRequired("Please enter your email address"), Length(max=50)])
+    email = StringField("Email", validators=[InputRequired("Please enter your email address"), Email("This field requires a valid email address"), Length(max=50)])
     username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80)])
 
@@ -71,11 +71,13 @@ def login():
             if check_password_hash(user.password, form.password.data):
                 login_user(user, remember=form.remember.data)
                 return redirect(url_for("dashboard"))
-
-        # flashing a warning message to the user
-        flash("Invalid email or password")
-        return redirect(url_for('login'))
-
+            else:
+                flash("Wrong password. Please try again.")
+                return redirect(url_for('login'))
+        else:
+            flash("Account doesn't exist. Please register before logging in.")
+            return redirect(url_for('login'))
+            
     return render_template("login.html", page_title="Login", form=form)
 
 # signup route to access the signup page
@@ -84,12 +86,18 @@ def signup():
     form = RegisterForm()
 
     if form.validate_on_submit():
-        # sha256 method generates a password that is 80 characters long
-        # this is the reason why the password field was made 80 characters long
-        hashed_password = generate_password_hash(form.password.data, method = "sha256")
-        new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
-        db.session.add(new_user)
-        db.session.commit()
+        usernamecheck = User.query.filter_by(username = form.username.data).first()
+        useremailcheck = User.query.filter_by(email=form.email.data).first()
+        if not useremailcheck and not usernamecheck:
+            # sha256 method generates a password that is 80 characters long
+            # this is the reason why the password field was made 80 characters long
+            hashed_password = generate_password_hash(form.password.data, method = "sha256")
+            new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+            db.session.add(new_user)
+            db.session.commit()
+        else:
+            flash("User account already exists")
+            return redirect(url_for('signup'))
         
         # flashing the success message to the user
         flash("Your account is successfully created !")
