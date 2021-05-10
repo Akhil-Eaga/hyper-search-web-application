@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
@@ -72,7 +72,8 @@ def login():
                 return redirect(url_for("dashboard"))
 
         # ----------- CHANGE THIS INTO A FLASH MESSAGE --------------
-        return "<h1>Invalid email or password</h1>"
+        flash("Invalid email or password")
+        return redirect(url_for('login'))
 
     return render_template("login.html", page_title="Login", form=form)
 
@@ -88,7 +89,10 @@ def signup():
         new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-        return "<h1>New user has been created</h1>"
+        
+        # flashing the success message to the user
+        flash("Your account is successfully created !")
+        return redirect(url_for('signup'))
 
     return render_template("signup.html", page_title="Signup", form=form)
 
@@ -116,7 +120,7 @@ def exercises():
 
 @app.route('/<page_name>')
 def error(page_name):
-    return render_template("error.html", page_name = page_name)
+    return render_template("error.html", page_title = "Error",  page_name = page_name)
 # running the app.py script
 if __name__ == "__main__":
     app.run(debug=True)

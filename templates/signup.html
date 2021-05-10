@@ -6,6 +6,15 @@
 
 
 {% block content %}
+{% for each_message in get_flashed_messages() %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ each_message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+
 <div class="container">
     <form action="/signup" method="POST" class="form-signin">
         <h2 class="form-signin-heading">Register:</h2>
