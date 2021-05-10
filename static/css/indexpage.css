@@ -1,0 +1,9 @@
+* {
+    font-family: 'Times New Roman', Times, serif, "sans-serif";
+}
+
+#home-page-heading{
+    color: black;
+    font-size: 10rem;
+    font-style: italic !important;
+}

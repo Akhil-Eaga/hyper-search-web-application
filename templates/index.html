@@ -1,13 +1,23 @@
 {% extends "base.html" %}
 
 {% block styles %}
-<link rel="stylesheet" href="{{ url_for('.static', filename='indexpage.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/indexpage.css')}}">
 {% endblock %}
 
 
 {% block content %}
+
+{% for each_message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ each_message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+
 <div class="container">
-    <h1>Hyper Search</h1>
+    <h1 id="home-page-heading">Hyper Search</h1>
     <p>Learn to search the Google effectively</p>
 
     <p>In this web application, you will learn some useful techniques that will help you find what you want quickly on

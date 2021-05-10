@@ -46,9 +46,10 @@ class LoginForm(FlaskForm):
     password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80)])
     remember = BooleanField("Remember me")
 
+# Email("This field requires a valid email address"),
 # registrattion form to create the form fields and data validation
 class RegisterForm(FlaskForm):
-    email = StringField("Email", validators=[InputRequired(), Length(max=50)])
+    email = StringField("Email", validators=[InputRequired("Please enter your email address"), Length(max=50)])
     username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80)])
 
@@ -71,7 +72,7 @@ def login():
                 login_user(user, remember=form.remember.data)
                 return redirect(url_for("dashboard"))
 
-        # ----------- CHANGE THIS INTO A FLASH MESSAGE --------------
+        # flashing a warning message to the user
         flash("Invalid email or password")
         return redirect(url_for('login'))
 
@@ -96,13 +97,14 @@ def signup():
 
     return render_template("signup.html", page_title="Signup", form=form)
 
+
 # dashboard route - can be accessed only after logging in
 # this view is protected and cannot be accessed without logging in
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    # return "<h1>You are now logged in !!!! </h1>"
     return render_template("dashboard.html", page_title = "Dashboard", name = current_user.username.lower().capitalize())
+
 
 # logout route - can be accessed by only logged in users and logs the user out when accessed
 @app.route('/logout')
@@ -110,6 +112,7 @@ def dashboard():
 def logout():
     # ---------------- before logging out the user save the quiz data into the database ------------------
     logout_user()
+    flash("You are logged out")
     return redirect(url_for('index'))
 
 @app.route("/exercises")
@@ -117,6 +120,10 @@ def logout():
 def exercises():
     return render_template("exercises.html", page_title = "Exercises", name = current_user.username.lower().capitalize())
 
+@app.route('/quiz')
+@login_required
+def quiz():
+    return render_template("quiz.html", page_title = "Quiz", name = current_user.username.lower().capitalize())
 
 @app.route('/<page_name>')
 def error(page_name):

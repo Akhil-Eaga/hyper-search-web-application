@@ -23,6 +23,13 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
+  <!-- Google Fonts Links -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- Custom but common styles -->
+  <!-- <link rel="stylesheet" href="{{url_for('.static', filename = 'styles.css')}}"> -->
+
   <!-- Add custom style sheets from individual html pages -->
   {% block styles %}
   {% endblock %}
@@ -58,6 +65,12 @@
   </nav>
   {% block content %}
   {% endblock %}
+  <!-- 
+  <footer>
+    <div>
+      <p>&#169; 2021 - Created with passion by Akhil Eaga and Arjun Panicker</p>
+    </div>
+  </footer> -->
 </body>
 
 </html>
