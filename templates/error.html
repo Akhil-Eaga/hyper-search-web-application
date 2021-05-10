@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>:(</h1>
+    <br>
+    <h2>Sorry, the page "{{page_name}}" is not a valid page.</h2>
+
+    <p>Please click on the button below to go back to the home page</p>
+    <br>
+    <a href="{{url_for('index')}}">Home page</a>
+</div>
+{% endblock %}

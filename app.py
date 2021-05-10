@@ -7,13 +7,16 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
+# base directory - the directory where this file resides in the host computer
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+# app initialization and configuration settings
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "mysecretkey"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "database.db")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+# database initialization, connection and the login manager configuration
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -36,21 +39,27 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 # FORMS
+
+# login form used to create the login form fields and data validation
 class LoginForm(FlaskForm):
     username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80)])
     remember = BooleanField("Remember me")
 
+# registrattion form to create the form fields and data validation
 class RegisterForm(FlaskForm):
     email = StringField("Email", validators=[InputRequired(), Length(max=50)])
     username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80)])
 
 # ROUTES
+
+# index route or home page route
 @app.route('/')
 def index():
     return render_template("index.html", page_title="Home Page")
 
+# login route to access login form
 @app.route('/login', methods=["GET", "POST"])
 def login():
     form = LoginForm()
@@ -67,7 +76,7 @@ def login():
 
     return render_template("login.html", page_title="Login", form=form)
 
-
+# signup route to access the signup page
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
     form = RegisterForm()
@@ -83,19 +92,31 @@ def signup():
 
     return render_template("signup.html", page_title="Signup", form=form)
 
-
+# dashboard route - can be accessed only after logging in
+# this view is protected and cannot be accessed without logging in
 @app.route('/dashboard')
 @login_required
 def dashboard():
     # return "<h1>You are now logged in !!!! </h1>"
-    return render_template("dashboard.html", page_title = "Dashboard", name = current_user.username)
+    return render_template("dashboard.html", page_title = "Dashboard", name = current_user.username.lower().capitalize())
 
-
+# logout route - can be accessed by only logged in users and logs the user out when accessed
 @app.route('/logout')
 @login_required
 def logout():
+    # ---------------- before logging out the user save the quiz data into the database ------------------
     logout_user()
     return redirect(url_for('index'))
 
+@app.route("/exercises")
+@login_required
+def exercises():
+    return render_template("exercises.html", page_title = "Exercises", name = current_user.username.lower().capitalize())
+
+
+@app.route('/<page_name>')
+def error(page_name):
+    return render_template("error.html", page_name = page_name)
+# running the app.py script
 if __name__ == "__main__":
     app.run(debug=True)
