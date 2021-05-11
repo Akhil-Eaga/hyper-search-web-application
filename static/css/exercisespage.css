@@ -1,13 +1,94 @@
-  /* Make the image fully responsive */
-  .container {
-    padding-top: 1rem;
-  }
+/* Make the image fully responsive */
+.container {
+  padding-top: 1rem;
+}
 
-  .carousel-inner .each-slide {
-    width: 100%;
-    height: 80vh;
-    background-color: black;
-    color: white;
-    border-radius: 15px;  
-  }
- 
+.carousel-indicators {
+  background-color: rgb(168, 168, 168);
+  border-radius: 10px;
+}
+
+.carousel-indicators li {
+  color: black;
+}
+
+.carousel-inner {
+  border-radius: 15px;
+  box-shadow: 5px 5px 20px 20px rgba(0,0,0,0.1);
+}
+
+.carousel-inner .each-slide {
+  width: 100%;
+  min-height: 80vh;
+  background-color: white;
+  border-radius: 15px;
+  padding: 100px;
+  padding-left: 120px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: gray;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.each-slide h3 {
+  color: #2971BF;
+}
+
+.searchbar {
+  box-shadow: 5px 5px 20px 20px rgba(0,0,0,0.1);
+  width: 50%;
+  color: black;
+  background-color: white;
+  vertical-align: middle;
+  padding: 10px;
+  margin-left: 5rem;
+  border-radius: 100px;
+}
+
+.searchbar i {
+  margin-right: 10px;
+}
+
+.searchbar p {
+  padding-left: 0.5rem;
+  margin: 0;
+}
+
+.before-refinement-link, 
+.after-refinement-link {
+  display: inline-block;
+  border: 2px solid #2971BF;
+  margin-top: 10px;
+  padding: 10px 30px;
+  width: fit-content;
+  border-radius: 10px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.before-refinement-link {
+  background-color: white;
+  color: #2971BF;
+}
+
+.after-refinement-link {
+  background-color: #2971BF;
+  color: white;
+}
+
+.before-refinement-link:hover {
+  text-decoration: none;
+  background-color: #5b8ec5;
+  color: white;
+}
+
+.after-refinement-link:hover {
+  text-decoration: none;
+  background-color: #0052aa;
+  color: white;
+}

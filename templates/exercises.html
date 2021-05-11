@@ -7,35 +7,134 @@
 
 {% block content %}
 <div class="container">
-    <div id="demo" class="carousel slide" data-ride="carousel">
+    <div>
+        <h2>Learning activities</h2>
+    </div>
+    <div id="demo" class="carousel slide" data-ride="carousel" data-interval=false>
 
         <!-- Indicators -->
         <ul class="carousel-indicators">
             <li data-target="#demo" data-slide-to="0" class="active"></li>
             <li data-target="#demo" data-slide-to="1"></li>
             <li data-target="#demo" data-slide-to="2"></li>
+            <li data-target="#demo" data-slide-to="3"></li>
+            <li data-target="#demo" data-slide-to="4"></li>
         </ul>
 
         <!-- The slideshow -->
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <!-- <img src="la.jpg" alt="Los Angeles"> -->
                 <div class="each-slide">
-                    <h1>This is the content of first slide</h1>
+                    <h3>Technique 1:</h3>
+                    <strong>Search social media</strong>
+                    <br>
+                    <p>Want to search for someone on social media? Try adding the "@socialmedianame" in the search.
+                    </p>
+                    <p>For example, if you want to find my profile on GitHub</p>
+                    <br>
+                    <div class="searchbar">
+                        <p><i class="ion-search"></i>Akhil Eaga @GitHub</p>
+                    </div>
+                    <br>
+                    <p>Give it a try and check the number of the results google returns.</p>
+                    <p>Click on the buttons below to check the effect of a refined search criteria.</p>
+                    <br>
+                    <a class="before-refinement-link" href="https://www.google.com/search?q=Akhil+Eaga+GitHub"
+                        target="_blank">Result of normal search</a>
+                    <a class="after-refinement-link" href="https://www.google.com/search?q=Akhil+Eaga+%40GitHub"
+                        target="_blank">Result of refined search</a>
                 </div>
             </div>
             <div class="carousel-item">
-                <!-- <img src="chicago.jpg" alt="Chicago"> -->
                 <div class="each-slide">
-                    <h1>This is the content of second slide</h1>
+                    <h3>Technique 2:</h3>
+                    <strong>Search hashtags</strong>
+                    <br>
+                    <p>Want to search for some popular trends? Try adding the "$hastag" in the search.
+                    </p>
+                    <p>For example, if you want to find the hashtag "throwbackthursday"</p>
+                    <br>
+                    <div class="searchbar">
+                        <p><i class="ion-search"></i>#throwbackthursday</p>
+                    </div>
+                    <br>
+                    <p>Give it a try and notice the difference in the relevance of results.</p>
+                    <p>Click on the buttons below to check the effect of a refined search criteria.</p>
+                    <br>
+                    <a class="before-refinement-link" href="https://www.google.com/search?q=throwbackthursday"
+                        target="_blank">Result of normal search</a>
+                    <a class="after-refinement-link" href="https://www.google.com/search?q=%23throwbackthursday"
+                        target="_blank">Result of refined search</a>
                 </div>
             </div>
             <div class="carousel-item">
-                <!-- <img src="ny.jpg" alt="New York"> -->
                 <div class="each-slide">
-                    <h1>This is the content of third slide</h1>
+                    <h3>Technique 3:</h3>
+                    <strong>Exclude words from search</strong>
+                    <br>
+                    <p>Want to excludes some words in your search? Try adding the "- remove_this_word" in the search.
+                    </p>
+                    <p>For example, if you want to search for mustang but not the car</p>
+                    <br>
+                    <div class="searchbar">
+                        <p><i class="ion-search"></i>mustang -car</p>
+                    </div>
+                    <br>
+                    <p>Give it a try and notice the difference in the relevance of results.</p>
+                    <p>Click on the buttons below to check the effect of a refined search criteria.</p>
+                    <br>
+                    <a class="before-refinement-link" href="https://www.google.com/search?q=mustang"
+                        target="_blank">Result of normal search</a>
+                    <a class="after-refinement-link" href="https://www.google.com/search?q=mustang+-car"
+                        target="_blank">Result of refined search</a>
                 </div>
             </div>
+            <div class="carousel-item">
+                <div class="each-slide">
+                    <h3>Technique 4:</h3>
+                    <strong>Search for exact match</strong>
+                    <br>
+                    <p>Want to search for an exact phrase? Try wrapping the search in double quotes.
+                    </p>
+                    <p>For example, if you want to find the Puppy Dog Sweaters, then use the following:</p>
+                    <br>
+                    <div class="searchbar">
+                        <p><i class="ion-search"></i>"Puppy Dog Sweaters"</p>
+                    </div>
+                    <br>
+                    <p>If you don't wrap them, in quotes, the words can occur in any sequence in the search results</p>
+                    <p>Notice the difference in the number of search results returned.</p>
+                    <br>
+                    <a class="before-refinement-link" href="https://www.google.com/search?q=puppy+dog+sweaters"
+                        target="_blank">Result of normal search</a>
+                    <a class="after-refinement-link" href="https://www.google.com/search?q=%22puppy+dog+sweaters%22"
+                        target="_blank">Result of refined search</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="each-slide">
+                    <h3>Technique 5:</h3>
+                    <strong>Search on specific sites</strong>
+                    <br>
+                    <p>Want to search for articles or content on specific site? Try adding the "site:website.com" at the
+                        end.
+                    </p>
+                    <p>For example, if you want to search for Sidney Crosby on nhl.com, then use the following:</p>
+                    <br>
+                    <div class="searchbar">
+                        <p><i class="ion-search"></i>Sidney Crosby site:nhl.com</p>
+                    </div>
+                    <br>
+                    <p>Notice the difference in the number of search results returned.</p>
+                    <p>Use the buttons below to check this technique in action.</p>
+                    <br>
+                    <a class="before-refinement-link" href="https://www.google.com/search?q=sidney+crosby"
+                        target="_blank">Result of normal search</a>
+                    <a class="after-refinement-link" href="https://www.google.com/search?q=sidney+crosby+site%3Anhl.com"
+                        target="_blank">Result of refined search</a>
+                </div>
+            </div>
+
         </div>
 
         <!-- Left and right controls -->
