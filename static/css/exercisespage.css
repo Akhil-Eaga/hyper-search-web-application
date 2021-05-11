@@ -17,6 +17,17 @@
   box-shadow: 5px 5px 20px 20px rgba(0,0,0,0.1);
 }
 
+.intro-slide > * {
+  margin: auto;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.intro-slide h1 {
+  margin-top: 4rem;
+  color: #2971BF;
+}
+
 .carousel-inner .each-slide {
   width: 100%;
   min-height: 80vh;
@@ -42,13 +53,14 @@
 
 .searchbar {
   box-shadow: 5px 5px 20px 20px rgba(0,0,0,0.1);
-  width: 50%;
+  min-width: 40%;
+  width: fit-content;
   color: black;
   background-color: white;
   vertical-align: middle;
   padding: 10px;
-  margin-left: 5rem;
   border-radius: 100px;
+  margin: auto;
 }
 
 .searchbar i {
@@ -57,6 +69,7 @@
 
 .searchbar p {
   padding-left: 0.5rem;
+  padding-right: 3rem;
   margin: 0;
 }
 
@@ -64,31 +77,56 @@
 .after-refinement-link {
   display: inline-block;
   border: 2px solid #2971BF;
-  margin-top: 10px;
   padding: 10px 30px;
   width: fit-content;
   border-radius: 10px;
-  transition: background-color 0.2s, color 0.2s;
+  margin: auto;
+  margin-top: 10px;  
+  
 }
 
 .before-refinement-link {
   background-color: white;
   color: #2971BF;
+  transition: background-color 0.2s, color 0.2s;
+}
+.before-refinement-link:hover {
+  text-decoration: none;
+  background-color: rgba(0,0,0,0.1);
 }
 
 .after-refinement-link {
   background-color: #2971BF;
   color: white;
-}
-
-.before-refinement-link:hover {
-  text-decoration: none;
-  background-color: #5b8ec5;
-  color: white;
+  transition: box-shadow 0.2s, background-color 0.2s, color 0.2s;
 }
 
 .after-refinement-link:hover {
   text-decoration: none;
   background-color: #0052aa;
   color: white;
+  box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.1);
+}
+
+.start-quiz-link-container {
+  margin-top: 3rem;
+  display: flex;
+  justify-items: space-around;
+}
+
+.start-quiz-link {
+  border: 3px solid #343A40;
+  border-radius: 10px;
+  display: inline-block;
+  margin: auto;
+  background-color: #343A40;
+  color: white;
+  padding: 10px 30px;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.start-quiz-link:hover {
+  color: #343A40;
+  background-color: white;
+  text-decoration: none;
 }
