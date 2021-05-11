@@ -1,0 +1,52 @@
+h1 {
+    color: #343A40;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.hero-image-container {
+    margin: auto;
+    text-align: center;
+    padding: 3rem 2rem 1rem 2rem;
+    /* border: 1px solid red; */
+    box-shadow: 5px 5px 20px 20px rgba(0,0,0,0.05);
+    border-radius: 20px;
+}
+
+.hero-image-container img {
+    width: 100%;
+    height: auto;
+}
+
+.dashboard-content-container {
+    margin-top: 2rem;
+    box-shadow: 5px 5px 20px 20px rgba(0,0,0,0.05);
+    border-radius: 20px;
+    padding: 1rem;
+}
+
+.dropcap {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.start-learning-link-container {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.start-learning-link {
+    border: 2px solid #343A40;
+    border-radius: 10px;
+    background-color: #343A40;
+    color: white;
+    padding: 20px 40px;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.start-learning-link:hover {
+    color: #343A40;
+    background-color: white;
+    padding: 20px 40px;
+    text-decoration: none;
+}

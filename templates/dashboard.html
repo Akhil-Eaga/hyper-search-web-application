@@ -2,18 +2,24 @@
 
 {# Comment: Use the block below to add custom styling #}
 {% block styles %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename ='css/dashboardpage.css')}}">
 {% endblock %}
 
 {% block content %}
 <div class="container">
     <h1>Welcome, {{ name }} </h1>
-    <div class="hero-image">
-        <img src="{{url_for('.static', filename='google_snippet_for_dashboard.jpg')}}"
+    <div class="hero-image-container">
+        <img src="{{url_for('.static', filename='images/google_snippet_for_dashboard.jpg')}}"
             alt="an image of google search engine with a question written in the search bar" style="margin: auto;">
     </div>
-    <div class="dashboard-content">
+    <div class="start-learning-link-container">
+        <a class="start-learning-link" href="{{url_for('exercises')}}">Jump into learning</a>
+    </div>
+    <div class="dashboard-content-container">
         <p>
-            Hyper Search is a web application created by 2 programmers from the University of Western Australia. This
+            <span class="dropcap">H</span>yper Search is a web application created by 2 programmers (Akhil Eaga, Arjun
+            Panicker) from the University
+            of Western Australia. This
             tool
             teaches you useful tips and techniques that can quicken your search process.
         </p>
@@ -24,18 +30,14 @@
         </p>
         <p>
             In this app, you will progress through a series of interactive learning activities that teaches you the
-            various
-            scenarios where you can use the techniques learnt.
-            <br>
-            After that you can put your new found skills to test by taking the quiz !!!
+            various scenarios where you can use the techniques learnt. After that you can put your new found skills to
+            test by taking the quiz !!!
         </p>
         <p>
             So without further ado, let's start our search :P
         </p>
     </div>
-    <div class="learning-materials-button">
-        <a href="{{url_for('exercises')}}">Start learning</a>
-    </div>
+
 </div>
 
 {% endblock %}
