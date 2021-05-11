@@ -5,3 +5,17 @@ GLOBAL STYLES
     box-sizing: border-box;
     font-family: 'Lato', sans-serif;
 }
+
+.loggedinheaderpage-footer {
+    background-color: #343A40;
+    margin-bottom: 0;
+    margin-top: 3rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.loggedinheaderpage-footer p {
+    margin-bottom: 0;
+    color: rgb(185, 185, 185);
+    
+}
