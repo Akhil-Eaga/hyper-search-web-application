@@ -42,16 +42,16 @@ def load_user(user_id):
 
 # login form used to create the login form fields and data validation
 class LoginForm(FlaskForm):
-    username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15)])
-    password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80)])
+    username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15, message = "Username should be 4 to 15 characters long")])
+    password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80, message = "Password should be atleast 8 characters long")])
     remember = BooleanField("Remember me")
 
 # Email("This field requires a valid email address"),
 # registrattion form to create the form fields and data validation
 class RegisterForm(FlaskForm):
-    email = StringField("Email", validators=[InputRequired("Please enter your email address"), Email("This field requires a valid email address"), Length(max=50)])
-    username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15)])
-    password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80)])
+    email = StringField("Email", validators=[InputRequired("Please enter your email address"), Email("Invalid email address"), Length(max=50, message = "Max email address length is 50 characters")])
+    username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15, message = "Username should be 4 to 15 characters long")])
+    password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80, message = "Password should be atleast 8 characters long")])
 
 # ROUTES
 
@@ -77,7 +77,9 @@ def login():
         else:
             flash("Account doesn't exist. Please register before logging in.")
             return redirect(url_for('login'))
-            
+    else:
+        if(len(list(form.errors.values())) > 0):
+            flash(list(form.errors.values())[0][0])       
     return render_template("login.html", page_title="Login", form=form)
 
 # signup route to access the signup page
@@ -102,7 +104,9 @@ def signup():
         # flashing the success message to the user
         flash("Your account is successfully created !")
         return redirect(url_for('signup'))
-
+    else:
+        if(len(list(form.errors.values())) > 0):
+            flash(list(form.errors.values())[0][0])
     return render_template("signup.html", page_title="Signup", form=form)
 
 
