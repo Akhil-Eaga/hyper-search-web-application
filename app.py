@@ -7,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
-# base directory - the directory where this file resides in the host computer
+# base directory - the directory where "this" file resides in the host computer
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 # app initialization and configuration settings
@@ -46,8 +46,7 @@ class LoginForm(FlaskForm):
     password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80, message = "Password should be atleast 8 characters long")])
     remember = BooleanField("Remember me")
 
-# Email("This field requires a valid email address"),
-# registrattion form to create the form fields and data validation
+# registration form to create the form fields and data validation
 class RegisterForm(FlaskForm):
     email = StringField("Email", validators=[InputRequired("Please enter your email address"), Email("Invalid email address"), Length(max=50, message = "Max email address length is 50 characters")])
     username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15, message = "Username should be 4 to 15 characters long")])
