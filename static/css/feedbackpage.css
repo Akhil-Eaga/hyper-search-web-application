@@ -1,3 +1,24 @@
+h2 {
+    margin-top: 1rem;
+}
+
+.score-showing-banner-container {
+    text-align: center;
+}
+
+.score-showing-banner {
+    border-radius: 10px;
+    background-color: #FFF3CD;
+    border: 2px solid #a19468;
+    color: #61593f;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+.user-score-value {
+    font-size: 2rem;
+}
+
 table {
     border: 2px solid #343A40;
     color: #343A40;
@@ -18,10 +39,13 @@ td {
     font-weight: bold;
 }
 
+.status {
+    font-weight: bold;
+}
+
 .status-correct {
     background-color: #D1E7DD;
     color: #568871;
-
 }
 
 .status-wrong {

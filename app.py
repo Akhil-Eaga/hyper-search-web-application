@@ -29,12 +29,14 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(50), unique = True)
     password = db.Column(db.String(80))
     quiz_answers = db.Column(db.String())
+    score = db.Column(db.Integer)
 
     def __init__(self, username, email, password):
         self.username = username
         self.email = email
         self.password = password
         self.quiz_answers = ""
+        self.score = 0
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -97,6 +99,11 @@ class QuizForm(FlaskForm):
 @app.route('/')
 def index():
     return render_template("index.html", page_title="Home Page")
+
+
+@app.route('/stats')
+def stats():
+    return render_template('stats.html')
 
 # login route to access login form
 @app.route('/login', methods=["GET", "POST"])
@@ -206,7 +213,8 @@ def feedback():
 
     question_labels = [question1_label, question2_label, question3_label, question4_label, question5_label, question6_label, question7_label, question8_label, question9_label, question10_label]
 
-    user_answers = User.query.get(current_user.id).quiz_answers
+    my_user = User.query.get(current_user.id)
+    user_answers = my_user.quiz_answers
     user_answers = user_answers.lower().split("__sep__")
     actual_answers = ["@", "#helloworld", "jaguar -car", '"agile methodology"', "rihanna site:youtube.com", "link:akhileaga.com.au", "related:netflix.com", "or", "filetype:docx", "supermarket *"]
 
@@ -218,6 +226,11 @@ def feedback():
             boolean_score.append("Correct")
         else:
             boolean_score.append("Wrong")
+
+    my_user.score = score
+    print("Score is " + str(score))
+    db.session.add(my_user)
+    db.session.commit()
 
     return render_template("feedback.html", page_title = "Feedback", name = current_user.username.lower().capitalize(), user_answers = user_answers, actual_answers = actual_answers, score = score, boolean_score = boolean_score, question_labels = question_labels)
 

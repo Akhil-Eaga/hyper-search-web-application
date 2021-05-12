@@ -10,10 +10,20 @@
 <!-- if the test is complete show this container -->
 <div class="container">
     <h2>Feedback:</h2>
-    <p>You scored {{score}} / 10</p>
+    {% if user_answers | length == 10 %}
+    <div class="score-showing-banner-container">
+        <p class="score-showing-banner">Score: <span class="user-score-value">{{score}}</span> / 10</p>
+    </div>
+    {% else %}
+    <div class="no-result-yet-container">
+        <p>You haven't taken the test yet.</p>
+        <p><a href="{{url_for('quiz')}}">&lt; Go to the quiz page</a></p>
+    </div>
+    {% endif %}
 
     <br>
 
+    {% if user_answers | length == 10 %}
     <table class="table">
         <tr>
             <th>S.No</th>
@@ -22,6 +32,7 @@
             <th>Your answer</th>
             <th>Status</th>
         </tr>
+
         {% for i in range(0, 10) %}
         <tr>
             <td class="question-number">{{i + 1}}</td>
@@ -35,6 +46,11 @@
             {% endif %}
         </tr>
         {% endfor %}
+        {% else %}
+
+        {% endif %}
+
+
     </table>
 </div>
 
