@@ -23,6 +23,7 @@ body {
     border-radius: 10px;
     box-shadow: 5px 5px 20px 20px rgba(255,255,255, 0.2);
     border: 2px solid rgba(0,0,0,0.3);
+    margin-bottom: 10rem;
 }
 
 .each-column {
@@ -34,7 +35,6 @@ body {
     text-align: center;
     background-color: rgba(0,0,0,0.3);
     padding: 1rem;
-    min-width: 11rem;
     width: fit-content;
 }
 
@@ -43,7 +43,11 @@ body {
 }
 
 .column-content {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: bold;
+}
+
+.empty-div {
+    height: 5rem;
 }
 
