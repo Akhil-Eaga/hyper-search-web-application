@@ -2,10 +2,20 @@
 
 {# Comment: Use the block below to add custom styling #}
 {% block styles %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/quizpage.css')}}">
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <h1>Quiz time : </h1>
+    <h2>Assessment</h2>
+    <!-- --------------------- PUT SOME QUIZ INSTRUCTIONS HERE -------------------- -->
+    <!-- QUIZ QUESTIONS CONTAINER -->
+    <div class="quiz-questions-container">
+        <!-- quiz question 1 -->
+        <div class="quiz-question">
+            <h3>Question 1:</h3>
+            <strong>What character do you use to search for results that relate to social media platforms?</strong>
+        </div>
+    </div>
 </div>
 {% endblock %}

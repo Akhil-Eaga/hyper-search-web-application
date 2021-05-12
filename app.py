@@ -136,6 +136,11 @@ def exercises():
 def quiz():
     return render_template("quiz.html", page_title = "Quiz", name = current_user.username.lower().capitalize())
 
+@app.route('/feedback')
+@login_required
+def feedback():
+    return render_template("feedback.html", page_title = "Feedback", name = current_user.username.lower().capitalize())
+
 @app.route('/<page_name>')
 def error(page_name):
     return render_template("error.html", page_title = "Error",  page_name = page_name)

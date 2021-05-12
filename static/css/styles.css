@@ -6,6 +6,11 @@ GLOBAL STYLES
     font-family: 'Lato', sans-serif;
 }
 
+.navbar-brand {
+    font-family: 'Faster One', cursive;
+    font-size: 2rem;
+}
+
 .loggedinheaderpage-footer {
     background-color: #343A40;
     margin-bottom: 0;

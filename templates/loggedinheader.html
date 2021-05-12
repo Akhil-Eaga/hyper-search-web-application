@@ -28,6 +28,9 @@
 
     <!-- Google Fonts Links -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
     <!-- Custom but common styles -->
@@ -62,13 +65,16 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item ">
-                    <a class="nav-link active" href="{{url_for('dashboard')}}">{{name}}'s Dashboard </a>
+                    <a class="nav-link" href="{{url_for('dashboard')}}">{{name}}'s Dashboard </a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link active" href="{{url_for('exercises')}}">Exercises</a>
+                    <a class="nav-link" href="{{url_for('exercises')}}">Exercises</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link active" href="{{url_for('quiz')}}">Quiz</a>
+                    <a class="nav-link" href="{{url_for('quiz')}}">Quiz</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{url_for('feedback')}}">Feedback</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="{{url_for('logout')}}">Logout <span class="sr-only">(current)</span></a>
