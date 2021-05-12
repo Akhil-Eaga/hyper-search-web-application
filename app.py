@@ -172,25 +172,54 @@ def exercises():
 @login_required
 def quiz():
     form = QuizForm()
-    answer = "Nothing selected"
     if form.validate_on_submit():
-        # answer = form.question1.data + " " + form.question2.data
-        # flash(answer)
-        # return render_template("quiz.html", form = form, page_title = "Quiz", name = current_user.username.lower().capitalize())
-        # -------------- SEE IF A CONFIRMATION MODAL CAN BE BROUGHT UP IN THIS PAGE -------------------
         answers = [form.question1.data, form.question2.data, form.question3.data, form.question4.data, form.question5.data, form.question6.data, form.question7.data, form.question8.data, form.question9.data, form.question10.data]
-        # SAVE THE DATA INTO THE DATABASE
+        
+        # __sep__ is used as the separator to join the answers into a string
+        answers = "__sep__".join(answers)
+        # user = User.query.filter_by(username = current_user.username).first()
+        user = User.query.get(current_user.id)
+        user.quiz_answers = answers
+        db.session.add(user)
+        db.session.commit()
         return redirect(url_for('feedback'))
     else:
         if(len(list(form.errors.values())) > 0):
             flash(list(form.errors.values())[0][0])
     
-    return render_template("quiz.html", form = form, page_title = "Quiz", name = current_user.username.lower().capitalize())
+    return render_template("quiz.html", form = form, page_title = "Quiz", name = current_user.username.lower().capitalize(), quiz_progress = current_user.quiz_answers.split("__sep__"))
 
 @app.route('/feedback')
 @login_required
 def feedback():
-    return render_template("feedback.html", page_title = "Feedback", name = current_user.username.lower().capitalize())
+    # question labels
+    question1_label = "1. What character do you use to search for results that relate to social media platforms?"
+    question2_label = "2. How would you search the trend 'helloworld'?"
+    question3_label = "3. How would you search for 'jaguar' by excluding the word 'car' from the search results ?"
+    question4_label = "4. If you want to search for the exact phrase of 'agile methodology', what would your search criteria will look like?"
+    question5_label = "5. Let's say you want to search for all the content posted by Rihanna, specifically on youtube.com. How would you phrase your search ?"
+    question6_label = "6. Consider the situation where you want to know how popular Akhil Eaga is. So you decided to find all the sites on the web that link to Akhil's website akhileaga.com.au . How would you search for this ?"
+    question7_label = "7. Your friend Arjun is a Netflix fan. So he watched all the shows on netflix. Now that he had watched all the shows on netflix, he came to you for recommendations on sites that are similar to netflix.com. You being a serious student, don't know any of similar sites. However, you decided to help Arjun. How would you search for sites similar to netflix.com ?"
+    question8_label = "8. You ran into a situation where you want to search for all the pages that have either 'Microbiology' or 'Nanotechnology' in them. What special word do you use to join those two search terms ?"
+    question9_label = "9. What special phrase do you add at the end of your search criteria to look for 'docx' file type ?"
+    question10_label = "10. You went to your friend's house for a party and listened to song which you liked it very much. But after coming home you forgot the second word of the song. You only remember the first word 'supermarket'. How would you search for the song ?"
+
+    question_labels = [question1_label, question2_label, question3_label, question4_label, question5_label, question6_label, question7_label, question8_label, question9_label, question10_label]
+
+    user_answers = User.query.get(current_user.id).quiz_answers
+    user_answers = user_answers.lower().split("__sep__")
+    actual_answers = ["@", "#helloworld", "jaguar -car", '"agile methodology"', "rihanna site:youtube.com", "link:akhileaga.com.au", "related:netflix.com", "or", "filetype:docx", "supermarket *"]
+
+    score = 0
+    boolean_score = []
+    for index in range(len(user_answers)):
+        if user_answers[index] == actual_answers[index]:
+            score = score + 1
+            boolean_score.append("Correct")
+        else:
+            boolean_score.append("Wrong")
+
+    return render_template("feedback.html", page_title = "Feedback", name = current_user.username.lower().capitalize(), user_answers = user_answers, actual_answers = actual_answers, score = score, boolean_score = boolean_score, question_labels = question_labels)
 
 @app.route('/<page_name>')
 def error(page_name):

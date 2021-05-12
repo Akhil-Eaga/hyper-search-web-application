@@ -3,8 +3,17 @@ h2 {
     margin-top: 1rem;
 }
 
+.assessment-messages-container {
+    box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 10px;
+    background-color: #D1E7DD;
+    color: #0F5132;
+    border: 2px solid #0F5132;
+}
+
 .each-question {
-    /* border: 1px solid black; */
     margin-top: 1rem;
     padding: 1rem;
     border-radius: 10px;

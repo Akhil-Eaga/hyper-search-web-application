@@ -18,6 +18,16 @@
 
 
 <div class="container">
+    {% if quiz_progress|length == 10 %}
+    <div class="assessment-messages-container">
+        <p>You have already taken the assessment previously. Check the <a href="{{url_for('feedback')}}">feedback</a>
+            page
+            to see your results.</p>
+        <p>If you want to retake the test, fill in the answers and submit again.</p>
+        <p>** Please note that only your latest submission will be saved.</p>
+    </div>
+    {% endif %}
+
     <h2 class="form-signin-heading">Assessment:</h2>
     <p>
         <i>This assessment will give you hands-on experience of phrasing your own search criteria and uses very strict
@@ -33,7 +43,7 @@
             <li>Use only one space to separate words or phrases</li>
         </ol>
     </small>
-    <form action="/quiz" method="POST" class="form-signin">
+    <form action="/quiz" method="POST" class="form-quiz">
         <!-- Hidden tag to take care of CSRF -->
         <div>
             {{ form.hidden_tag() }}
@@ -105,4 +115,5 @@
         </div>
     </form>
 </div>
+
 {% endblock %}

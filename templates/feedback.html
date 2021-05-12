@@ -6,8 +6,36 @@
 
 
 {% block content %}
+
+<!-- if the test is complete show this container -->
 <div class="container">
-    <h1>This is feedback page</h1>
+    <h2>Feedback:</h2>
+    <p>You scored {{score}} / 10</p>
+
+    <br>
+
+    <table class="table">
+        <tr>
+            <th>S.No</th>
+            <th>Question</th>
+            <th>Correct answer</th>
+            <th>Your answer</th>
+            <th>Status</th>
+        </tr>
+        {% for i in range(0, 10) %}
+        <tr>
+            <td class="question-number">{{i + 1}}</td>
+            <td class="question-label">{{question_labels[i][3:]}}</td>
+            <td class="actual-answer">{{actual_answers[i]}}</td>
+            <td class="your-answer">{{user_answers[i]}}</td>
+            {% if boolean_score[i] == "Correct" %}
+            <td class="status status-correct">{{boolean_score[i]}}</td>
+            {% else %}
+            <td class="status status-wrong">{{boolean_score[i]}}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
 </div>
 
 {% endblock %}
