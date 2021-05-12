@@ -103,7 +103,18 @@ def index():
 
 @app.route('/stats')
 def stats():
-    return render_template('stats.html')
+    # Number of users
+    user_count = User.query.count()
+    # Number of users who completed the test
+    # Number of users who attempted the test
+    unattempted_user_count = User.query.filter(User.quiz_answers == "").filter_by(score = 0).count()
+    zero_score_users = User.query.filter(User.quiz_answers != "").filter_by(score = 0).count()
+    nonzero_score_users = User.query.filter(User.quiz_answers != "").filter(User.score != 0).count()
+    print(zero_score_users)
+    # total_score = User.query(User.quiz_answers != "", func.sum(User.score)).all()
+    print()
+    # Avg score all the users (do not add if the score is 0 and if answer == "")
+    return render_template('stats.html', page_title = "Stats", user_count = user_count, unattempted_user_count = unattempted_user_count, zero_score_users = zero_score_users, nonzero_score_users = nonzero_score_users)
 
 # login route to access login form
 @app.route('/login', methods=["GET", "POST"])

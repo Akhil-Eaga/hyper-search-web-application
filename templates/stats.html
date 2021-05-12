@@ -1,11 +1,67 @@
 {% extends 'base.html' %}
 
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/statspage.html')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/statspage.css')}}">
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <h1>This is the usage statistics page</h1>
+    <div class="stats-heading-container">
+        <h2>Application Statistics</h2>
+    </div>
+
+    <div class="five-column-container">
+        <!-- Registered Users -->
+        <div class="each-column">
+            <div class="column-content-heading">
+                <p>Registered Users</p>
+            </div>
+            <div class="column-content">
+                {{user_count}}
+            </div>
+        </div>
+
+        <!-- Attempted users -->
+        <div class="each-column">
+            <div class="column-content-heading">
+                <p>Attempted Users</p>
+            </div>
+            <div class="column-content">
+                {{zero_score_users + nonzero_score_users}}
+            </div>
+        </div>
+
+        <!-- Unattempted users -->
+        <div class="each-column">
+            <div class="column-content-heading">
+                <p>Unattempted Users</p>
+            </div>
+            <div class="column-content">
+                {{unattempted_user_count}}
+            </div>
+        </div>
+
+        <!-- Non zero scorers -->
+        <div class="each-column">
+            <div class="column-content-heading">
+                <p>Non-zero Scorers</p>
+            </div>
+            <div class="column-content">
+                {{nonzero_score_users}}
+            </div>
+        </div>
+
+        <!-- Zero scorers -->
+        <div class="each-column">
+            <div class="column-content-heading">
+                <p>Zero Scorers</p>
+            </div>
+            <div class="column-content">
+                {{zero_score_users}}
+            </div>
+        </div>
+
+
+    </div>
 </div>
 {% endblock %}
