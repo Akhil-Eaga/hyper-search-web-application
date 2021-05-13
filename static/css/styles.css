@@ -7,7 +7,7 @@ GLOBAL STYLES
 }
 
 .navbar-brand {
-    font-family: 'Faster One', cursive;
+    font-family: 'Faster One', 'Lato', sans-serif;
     font-size: 2rem;
 }
 

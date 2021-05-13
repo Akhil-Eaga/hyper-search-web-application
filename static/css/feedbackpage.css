@@ -53,3 +53,22 @@ td {
     color: #ac545c;
 }
 
+.retake-quiz-link-container {
+    text-align: center;
+}
+
+.retake-quiz-link-container a {
+    padding: 1rem 2rem;
+    background-color:#343A40;
+    border: 3px solid #343A40;
+    border-radius: 10px;
+    color: white;
+    transition: background-color 0.2s, color 0.2s;
+    text-decoration: none;
+}
+
+.retake-quiz-link-container a:hover {
+    color:#343A40;
+    background-color: white;
+}
+

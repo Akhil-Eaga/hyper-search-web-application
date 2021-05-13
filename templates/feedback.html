@@ -46,12 +46,14 @@
             {% endif %}
         </tr>
         {% endfor %}
-        {% else %}
-
-        {% endif %}
-
-
     </table>
+
+    <br>
+
+    <div class="retake-quiz-link-container">
+        <a href="{{url_for('quiz')}}">Retake Quiz</a>
+    </div>
+    {% endif %}
 </div>
 
 {% endblock %}

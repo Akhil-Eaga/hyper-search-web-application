@@ -45,23 +45,29 @@ h2 {
     box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.1);
 }
 
-.quiz-submission-button {
+.quiz-buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.submit-quiz-button {
     color: white;
     background-color: #343A40;
     padding: 0.8rem 2rem;
     border: none;
     border: 3px solid #343A40;
     border-radius: 10px;
-
     transition: color 0.2s, background-color 0.2s;
 }
 
-.quiz-submission-button:hover {
+.submit-quiz-button:hover {
     color: #343A40;
     background-color: white;
 }
 
-.quiz-submission-button:focus {
+.submit-quiz-button:focus, .save-progress-button:focus {
     outline: none;
 }
 

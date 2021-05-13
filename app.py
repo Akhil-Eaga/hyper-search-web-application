@@ -100,20 +100,17 @@ class QuizForm(FlaskForm):
 def index():
     return render_template("index.html", page_title="Home Page")
 
-
+# route to the stats page
 @app.route('/stats')
 def stats():
     # Number of users
     user_count = User.query.count()
-    # Number of users who completed the test
     # Number of users who attempted the test
     unattempted_user_count = User.query.filter(User.quiz_answers == "").filter_by(score = 0).count()
+    # Number of users who completed the test is the sum of zero and non zero scorers
     zero_score_users = User.query.filter(User.quiz_answers != "").filter_by(score = 0).count()
     nonzero_score_users = User.query.filter(User.quiz_answers != "").filter(User.score != 0).count()
-    print(zero_score_users)
-    # total_score = User.query(User.quiz_answers != "", func.sum(User.score)).all()
-    print()
-    # Avg score all the users (do not add if the score is 0 and if answer == "")
+
     return render_template('stats.html', page_title = "Stats", user_count = user_count, unattempted_user_count = unattempted_user_count, zero_score_users = zero_score_users, nonzero_score_users = nonzero_score_users)
 
 # login route to access login form
@@ -195,7 +192,6 @@ def quiz():
         
         # __sep__ is used as the separator to join the answers into a string
         answers = "__sep__".join(answers)
-        # user = User.query.filter_by(username = current_user.username).first()
         user = User.query.get(current_user.id)
         user.quiz_answers = answers
         db.session.add(user)
@@ -239,7 +235,6 @@ def feedback():
             boolean_score.append("Wrong")
 
     my_user.score = score
-    print("Score is " + str(score))
     db.session.add(my_user)
     db.session.commit()
 
@@ -249,6 +244,10 @@ def feedback():
 def error(page_name):
     return render_template("error.html", page_title = "Error",  page_name = page_name)
 
+
+###########################
 # running the app.py script
+###########################
+
 if __name__ == "__main__":
     app.run(debug=True)
