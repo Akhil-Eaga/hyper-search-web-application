@@ -31,6 +31,7 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(80))
     quiz_answers = db.Column(db.String())
     score = db.Column(db.Integer)
+    # isComplete = db.Column(db.String())
 
     def __init__(self, username, email, password):
         self.username = username
@@ -38,6 +39,7 @@ class User(UserMixin, db.Model):
         self.password = password
         self.quiz_answers = ""
         self.score = 0
+        # self.isComplete = "Incomplete"
 
 # Admin Database model
 class Admin(UserMixin, db.Model):
@@ -86,25 +88,37 @@ class QuizForm(FlaskForm):
 
     
     # questions
-    question1 = StringField(question1_label, validators=[InputRequired("Please answer this question"), Length(min=1, max=1, message ="Please input only one character for question 1")])
+    # question1 = StringField(question1_label, validators=[InputRequired("Please answer this question"), Length(min=1, max=1, message ="Please input only one character for question 1")])
     
-    question2 = StringField(question2_label, validators=[InputRequired("Please answer this question"), Length(min=11, max=11, message ="Please input exactly 11 characters for question 2")])
+    # question2 = StringField(question2_label, validators=[InputRequired("Please answer this question"), Length(min=11, max=11, message ="Please input exactly 11 characters for question 2")])
 
-    question3 = StringField(question3_label, validators=[InputRequired("Please answer this question"), Length(min=11, max=11, message ="Please input exactly 11 characters for question 3")])
+    # question3 = StringField(question3_label, validators=[InputRequired("Please answer this question"), Length(min=11, max=11, message ="Please input exactly 11 characters for question 3")])
 
-    question4 = StringField(question4_label, validators=[InputRequired("Please answer this question"), Length(min=19, max=19, message ="Please input exactly 19 characters for question 4")])
+    # question4 = StringField(question4_label, validators=[InputRequired("Please answer this question"), Length(min=19, max=19, message ="Please input exactly 19 characters for question 4")])
 
-    question5 = StringField(question5_label, validators=[InputRequired("Please answer this question"), Length(min=24, max=24, message ="Please input exactly 24 characters for question 5")])
+    # question5 = StringField(question5_label, validators=[InputRequired("Please answer this question"), Length(min=24, max=24, message ="Please input exactly 24 characters for question 5")])
 
-    question6 = StringField(question6_label, validators=[InputRequired("Please answer this question"), Length(min=21, max=21, message ="Please input exactly 21 characters for question 6")])
+    # question6 = StringField(question6_label, validators=[InputRequired("Please answer this question"), Length(min=21, max=21, message ="Please input exactly 21 characters for question 6")])
 
-    question7 = StringField(question7_label, validators=[InputRequired("Please answer this question"), Length(min=19, max=19, message ="Please input exactly 19 characters for question 7")])
+    # question7 = StringField(question7_label, validators=[InputRequired("Please answer this question"), Length(min=19, max=19, message ="Please input exactly 19 characters for question 7")])
 
-    question8 = StringField(question8_label, validators=[InputRequired("Please answer this question"), Length(min=2, max=2, message ="Please input exactly 2 characters for question 8")])
+    # question8 = StringField(question8_label, validators=[InputRequired("Please answer this question"), Length(min=2, max=2, message ="Please input exactly 2 characters for question 8")])
 
-    question9 = StringField(question9_label, validators=[InputRequired("Please answer this question"), Length(min=13, max=13, message ="Please input exactly 13 characters for question 9")])
+    # question9 = StringField(question9_label, validators=[InputRequired("Please answer this question"), Length(min=13, max=13, message ="Please input exactly 13 characters for question 9")])
     
-    question10 = StringField(question10_label, validators=[InputRequired("Please answer this question"), Length(min=13, max=13, message ="Please input exactly 13 characters for question 10")])
+    # question10 = StringField(question10_label, validators=[InputRequired("Please answer this question"), Length(min=13, max=13, message ="Please input exactly 13 characters for question 10")])
+
+    question1 = StringField(question1_label)
+    question2 = StringField(question2_label)
+    question3 = StringField(question3_label)
+    question4 = StringField(question4_label)
+    question5 = StringField(question5_label)
+    question6 = StringField(question6_label)
+    question7 = StringField(question7_label)
+    question8 = StringField(question8_label)
+    question9 = StringField(question9_label)
+    question10 = StringField(question10_label)
+
 
 # admin login form used to create form fields for the admin login page
 class AdminLoginForm(FlaskForm):
@@ -112,7 +126,9 @@ class AdminLoginForm(FlaskForm):
     password = PasswordField("Admin password", validators=[InputRequired(), Length(min=8, max=80, message = "Admin Password should be atleast 8 characters long")])
     remember = BooleanField("Remember me")
 
-# ROUTES
+######################################################################
+########################## ROUTES ####################################
+######################################################################
 
 # index route or home page route
 @app.route('/')
@@ -208,7 +224,6 @@ def signup():
     return render_template("signup.html", page_title="Signup", form=form)
 
 # dashboard route - can be accessed only after logging in
-# this view is protected and cannot be accessed without logging in
 @app.route('/dashboard')
 @login_required
 def dashboard():
@@ -218,6 +233,9 @@ def dashboard():
 @app.route("/admin_dashboard")
 @login_required
 def admin_dashboard():
+    # query the user database and show the user database in the dashboard
+    # create a form to add more admins or delete the admins
+    # show some stats
     return render_template("admin_dashboard.html", page_title = "Admin Dashboard")
 
 # logout route - can be accessed by only logged in users and logs the user out when accessed
@@ -245,8 +263,21 @@ def exercises():
 @login_required
 def quiz():
     form = QuizForm()
+    
+    # initiating the value to max unanswered count
+    unanswered_count = 10
     if form.validate_on_submit():
         answers = [form.question1.data, form.question2.data, form.question3.data, form.question4.data, form.question5.data, form.question6.data, form.question7.data, form.question8.data, form.question9.data, form.question10.data]
+        
+        # for i in range(len(answers)):
+        #     print(str(i) + " " + answers[i] + " " + str(type(answers[i])))
+        #     answers[i] = str(answers[i])
+
+        # unanswered_count = answers.count("")
+        # if unanswered_count != 0:
+        #     flash("You did not complete all the questions. Your progress is saved.")
+        #     return redirect(url_for('quiz'))
+            # render the page with a banner informing the user to complete the test
         
         # __sep__ is used as the separator to join the answers into a string
         answers = "__sep__".join(answers)
@@ -259,7 +290,7 @@ def quiz():
         if(len(list(form.errors.values())) > 0):
             flash(list(form.errors.values())[0][0])
     
-    return render_template("quiz.html", form = form, page_title = "Quiz", name = current_user.username.lower().capitalize(), quiz_progress = current_user.quiz_answers.split("__sep__"))
+    return render_template("quiz.html", form = form, page_title = "Quiz", name = current_user.username.lower().capitalize(), quiz_answers = current_user.quiz_answers.split("__sep__"), unanswered_count = unanswered_count)
 
 @app.route('/feedback')
 @login_required

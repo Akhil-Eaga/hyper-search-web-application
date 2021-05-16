@@ -10,6 +10,9 @@
 <!-- if the test is complete show this container -->
 <div class="container">
     <h2>Feedback:</h2>
+
+    <!-- change the length == 10 condition to something else meaningful -->
+
     {% if user_answers | length == 10 %}
     <div class="score-showing-banner-container">
         <p class="score-showing-banner">Score: <span class="user-score-value">{{score}}</span> / 10</p>

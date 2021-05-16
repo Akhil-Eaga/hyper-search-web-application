@@ -5,6 +5,11 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/quizpage.css')}}">
 {% endblock %}
 
+{% block scripts %}
+<script src="{{url_for('static', filename = 'js/quizpagescript.js')}}"></script>
+{% endblock %}
+
+
 {% block content %}
 
 {% for each_message in get_flashed_messages() %}
@@ -18,7 +23,7 @@
 
 
 <div class="container">
-    {% if quiz_progress|length == 10 %}
+    {% if quiz_answers | length == 10 %}
     <div class="assessment-messages-container">
         <p>You have already taken the assessment previously. Check the <a href="{{url_for('feedback')}}">feedback</a>
             page
