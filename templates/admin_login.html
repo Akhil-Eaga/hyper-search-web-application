@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
+{# Comment: Use the block below to add custom styling #}
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/signuppage.css') }}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename ='css/admin_loginpage.css')}}">
 {% endblock %}
-
 
 {% block content %}
 
 {% for each_message in get_flashed_messages() %}
-<div class="alert alert-info alert-dismissible fade show" role="alert">
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
     {{ each_message }}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -17,14 +17,11 @@
 {% endfor %}
 
 <div class="container">
-    <div class="signuppage-form-container">
-        <form action="/signup" method="POST" class="form-signin">
+    <div class="adminpage-form-container">
+        <form action="/admin_login" method="POST" class="form-signin">
             <div>
-                <h1 class="form-signin-heading">New User Registration</h1>
+                <h1 class="form-signin-heading">Admin Login</h1>
                 {{ form.hidden_tag() }}
-            </div>
-            <div>
-                {{ form.email.label}}<br>{{form.email}}
             </div>
             <div>
                 {{ form.username.label}}<br>{{form.username}}
@@ -32,9 +29,11 @@
             <div>
                 {{form.password.label}}<br>{{form.password}}
             </div>
-            <br>
             <div>
-                <button type="submit" class="btn btn-lg btn-primary">Register</button>
+                {{form.remember}} {{ form.remember.label}}
+            </div>
+            <div>
+                <button type="submit" class="btn btn-lg btn-primary">Admin Login</button>
             </div>
         </form>
     </div>

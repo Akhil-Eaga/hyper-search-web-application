@@ -21,8 +21,9 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
+login_manager.login_view = "admin_login"
 
-# Database model
+# User Database model
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(15), unique = True)
@@ -38,8 +39,21 @@ class User(UserMixin, db.Model):
         self.quiz_answers = ""
         self.score = 0
 
+# Admin Database model
+class Admin(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String(15), unique = True)
+    email = db.Column(db.String(50), unique = True)
+    password = db.Column(db.String(15))
+
+    def __init__(self, username, email, password):
+        self.username = username
+        self.email = email
+        self.password = password
+
 @login_manager.user_loader
 def load_user(user_id):
+    # this is used for user login but not for admin login
     return User.query.get(int(user_id))
 
 # FORMS
@@ -92,6 +106,11 @@ class QuizForm(FlaskForm):
     
     question10 = StringField(question10_label, validators=[InputRequired("Please answer this question"), Length(min=13, max=13, message ="Please input exactly 13 characters for question 10")])
 
+# admin login form used to create form fields for the admin login page
+class AdminLoginForm(FlaskForm):
+    username = StringField("Admin name", validators=[InputRequired(), Length(min=4, max=15, message = "Admin name should be 4 to 15 characters long")])
+    password = PasswordField("Admin password", validators=[InputRequired(), Length(min=8, max=80, message = "Admin Password should be atleast 8 characters long")])
+    remember = BooleanField("Remember me")
 
 # ROUTES
 
@@ -135,6 +154,31 @@ def login():
             flash(list(form.errors.values())[0][0])
     return render_template("login.html", page_title="Login", form=form)
 
+# admin login route
+@app.route('/admin_login', methods=['GET', 'POST'])
+def admin_login():
+    form = AdminLoginForm()
+
+    if form.validate_on_submit():
+        print("Entered form validation")
+        admin = Admin.query.filter_by(username = form.username.data).first()
+        if admin:
+            print("Entered the admin if condition")
+            if check_password_hash(admin.password, form.password.data):
+                login_user(admin, remember=form.remember.data)
+                print("Current admin info : ", current_user.username)
+                return redirect(url_for("admin_dashboard"))
+            else:
+                flash("Wrong password. Please try again.")
+                return redirect(url_for('admin_login'))
+        else:
+            flash("Admin account doesn't exist. Please contact help center.")
+            return redirect(url_for('admin_login'))
+    else:
+        if(len(list(form.errors.values())) > 0):
+            flash(list(form.errors.values())[0][0])
+    return render_template("admin_login.html", page_title="Admin Login", form=form)
+
 # signup route to access the signup page
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
@@ -160,6 +204,7 @@ def signup():
     else:
         if(len(list(form.errors.values())) > 0):
             flash(list(form.errors.values())[0][0])
+
     return render_template("signup.html", page_title="Signup", form=form)
 
 # dashboard route - can be accessed only after logging in
@@ -169,6 +214,12 @@ def signup():
 def dashboard():
     return render_template("dashboard.html", page_title = "Dashboard", name = current_user.username.lower().capitalize())
 
+# admin_dashboard route - can be accessed only after loggin in with admin creds
+@app.route("/admin_dashboard")
+@login_required
+def admin_dashboard():
+    return render_template("admin_dashboard.html", page_title = "Admin Dashboard")
+
 # logout route - can be accessed by only logged in users and logs the user out when accessed
 @app.route('/logout')
 @login_required
@@ -176,6 +227,13 @@ def logout():
     # ---------------- before logging out the user save the quiz data into the database ------------------
     logout_user()
     flash("You are logged out")
+    return redirect(url_for('index'))
+
+@app.route('/admin_logout')
+@login_required
+def admin_logout():
+    logout_user()
+    flash("Admin is logged out")
     return redirect(url_for('index'))
 
 @app.route("/exercises")

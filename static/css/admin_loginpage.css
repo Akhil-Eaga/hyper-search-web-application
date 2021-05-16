@@ -1,0 +1,23 @@
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url(/static/images/adminloginpage-hero-image.jfif);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.adminpage-form-container {
+    color: white;
+    text-align: center;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    padding: 1rem;
+    margin: auto;
+    margin-top: 5rem;
+    box-shadow: 5px 5px 20px 20px rgba(255,255,255,0.3);
+}
+
+.form-signin {
+    padding: 1rem;
+}
+
