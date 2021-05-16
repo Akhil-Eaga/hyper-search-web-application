@@ -86,28 +86,7 @@ class QuizForm(FlaskForm):
     question9_label = "9. What special phrase do you add at the end of your search criteria to look for 'docx' file type ?"
     question10_label = "10. You went to your friend's house for a party and listened to song which you liked it very much. But after coming home you forgot the second word of the song. You only remember the first word 'supermarket'. How would you search for the song ?"
 
-    
-    # questions
-    # question1 = StringField(question1_label, validators=[InputRequired("Please answer this question"), Length(min=1, max=1, message ="Please input only one character for question 1")])
-    
-    # question2 = StringField(question2_label, validators=[InputRequired("Please answer this question"), Length(min=11, max=11, message ="Please input exactly 11 characters for question 2")])
-
-    # question3 = StringField(question3_label, validators=[InputRequired("Please answer this question"), Length(min=11, max=11, message ="Please input exactly 11 characters for question 3")])
-
-    # question4 = StringField(question4_label, validators=[InputRequired("Please answer this question"), Length(min=19, max=19, message ="Please input exactly 19 characters for question 4")])
-
-    # question5 = StringField(question5_label, validators=[InputRequired("Please answer this question"), Length(min=24, max=24, message ="Please input exactly 24 characters for question 5")])
-
-    # question6 = StringField(question6_label, validators=[InputRequired("Please answer this question"), Length(min=21, max=21, message ="Please input exactly 21 characters for question 6")])
-
-    # question7 = StringField(question7_label, validators=[InputRequired("Please answer this question"), Length(min=19, max=19, message ="Please input exactly 19 characters for question 7")])
-
-    # question8 = StringField(question8_label, validators=[InputRequired("Please answer this question"), Length(min=2, max=2, message ="Please input exactly 2 characters for question 8")])
-
-    # question9 = StringField(question9_label, validators=[InputRequired("Please answer this question"), Length(min=13, max=13, message ="Please input exactly 13 characters for question 9")])
-    
-    # question10 = StringField(question10_label, validators=[InputRequired("Please answer this question"), Length(min=13, max=13, message ="Please input exactly 13 characters for question 10")])
-
+    # question fields
     question1 = StringField(question1_label)
     question2 = StringField(question2_label)
     question3 = StringField(question3_label)
@@ -268,18 +247,7 @@ def quiz():
     unanswered_count = 10
     if form.validate_on_submit():
         answers = [form.question1.data, form.question2.data, form.question3.data, form.question4.data, form.question5.data, form.question6.data, form.question7.data, form.question8.data, form.question9.data, form.question10.data]
-        
-        # for i in range(len(answers)):
-        #     print(str(i) + " " + answers[i] + " " + str(type(answers[i])))
-        #     answers[i] = str(answers[i])
 
-        # unanswered_count = answers.count("")
-        # if unanswered_count != 0:
-        #     flash("You did not complete all the questions. Your progress is saved.")
-        #     return redirect(url_for('quiz'))
-            # render the page with a banner informing the user to complete the test
-        
-        # __sep__ is used as the separator to join the answers into a string
         answers = "__sep__".join(answers)
         user = User.query.get(current_user.id)
         user.quiz_answers = answers
