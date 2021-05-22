@@ -1,35 +1,59 @@
 /* Make the image fully responsive */
 .container {
-  padding-top: 1rem;
-}
-
-h2 {
-  color: #343A40;
+  /* display: flex; */
+  /* width: 100%; */
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .carousel-indicators {
-  background-color: rgb(168, 168, 168);
-  border-radius: 10px;
+  background-color: #87b2f8;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  
+}
+
+.carousel-indicators:hover {
+  background-color: #4285f4;
+
+}
+
+.carousel-indicators .active {
+  background-color: #ffd666;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  margin: 5px;
 }
 
 .carousel-indicators li {
-  color: black;
+  color: white;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  margin: 5px;
 }
 
+
 .carousel-inner {
-  border-radius: 15px;
-  box-shadow: 5px 5px 20px 20px rgba(0,0,0,0.1);
+  border-radius: 30px;
+  box-shadow: 0px 0px 50px 5px rgba(0,0,0,0.1);
+  min-width: 50vh;
 }
 
 .intro-slide > * {
-  margin: auto;
   margin-bottom: 1rem;
   margin-top: 1rem;
 }
 
 .intro-slide h1 {
-  margin-top: 4rem;
-  color: #2971BF;
+  margin: 0;
+  padding: 1rem;
+  color: black;
 }
 
 .carousel-inner .each-slide {
@@ -37,22 +61,38 @@ h2 {
   min-height: 80vh;
   background-color: white;
   border-radius: 15px;
-  padding: 100px;
-  padding-left: 120px;
-
+  padding-left: 7.5rem;
+  padding-right: 7.5rem;
   display: flex;
   flex-direction: column;
+  /* overflow: scroll; */
+}
+.each-slide-info-list{
+  font-size: 18px;
+  padding: 1rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
-.carousel-control-prev-icon,
+.carousel-control-prev-icon{
+
+  background-image: url("/static/icons/left_arrow.png");
+}
 .carousel-control-next-icon {
-  background-color: gray;
-  height: 50px;
-  border-radius: 10px;
+  background-image: url("/static/icons/right_arrow.png");
+
 }
 
-.each-slide h3 {
-  color: #2971BF;
+.carousel-control-prev-icon , .carousel-control-next-icon {
+  width: 4rem;
+  height: 4rem;
+}
+
+
+.each-slide h1 {
+  margin-top: 1rem;
+  padding: 1rem;
+  color: black;
 }
 
 .searchbar {
@@ -133,4 +173,49 @@ h2 {
   color: #343A40;
   background-color: white;
   text-decoration: none;
+}
+
+.gSearch{
+  margin: 1%;
+  width: 100%;
+  height: 40px;
+  box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.055);
+  border-radius: 20px ;
+  border: white;
+  margin-bottom: 0.5rem;
+}
+.gSearch:hover{
+  
+  box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.1);
+}
+
+.gSearch-text{
+  font-family: "Questrial";
+  width: 100%;
+  height: 100%;
+  background-image: url('/static/icons/gsearch.png');
+  background-position: 10px 10px;
+  background-size: 20px;
+  padding-left: 50px;
+  background-repeat: no-repeat;
+  border: white;
+  border-radius: 30px;
+  
+}
+
+.gSearch-text:focus{
+  outline: none;
+}
+
+
+.hypersearch {
+  margin-bottom: 10rem;
+}
+
+.last-slide {
+  text-align: center;
+}
+
+.last-slide-heading {
+  padding-top: 30%;
 }

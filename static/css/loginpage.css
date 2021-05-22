@@ -7,11 +7,12 @@ body {
 }
 
 .loginpage-form-container {
-    color: white;
+    max-width: 50%;
+    color: black;
     text-align: center;
-    background-color: rgba(0,0,0,0.5);
+    background-color: #ffffff;
     border-radius: 10px;
-    padding: 1rem;
+    padding: 2rem;
     margin: auto;
     margin-top: 5rem;
 }
@@ -20,3 +21,17 @@ body {
     padding: 1rem;
 }
 
+.form-control{
+    width: 50%;
+    color: black;
+    margin: auto;
+
+}
+
+.form-control:hover{
+    width: 50%;
+    color: black;
+    margin: auto;
+    box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.1);
+
+}

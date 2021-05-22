@@ -7,14 +7,15 @@ body {
 }
 
 .adminpage-form-container {
+    max-width: 50%;
     color: white;
     text-align: center;
-    background-color: rgba(0,0,0,0.5);
+    background-color: #121212;
     border-radius: 10px;
     padding: 1rem;
     margin: auto;
     margin-top: 5rem;
-    box-shadow: 5px 5px 20px 20px rgba(255,255,255,0.3);
+    box-shadow: 0px 0px 80px 5px rgba(255, 255, 255, 0.3);
 }
 
 .form-signin {

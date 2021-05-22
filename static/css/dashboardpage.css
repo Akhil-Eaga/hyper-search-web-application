@@ -2,37 +2,32 @@ h1 {
     color: #343A40;
     margin-top: 1rem;
     margin-bottom: 2rem;
-}
-
-.hero-image-container {
-    margin: auto;
     text-align: center;
-    padding: 3rem 2rem 1rem 2rem;
-    /* border: 1px solid red; */
-    box-shadow: 5px 5px 20px 20px rgba(0,0,0,0.05);
-    border-radius: 20px;
-}
-
-.hero-image-container img {
-    width: 100%;
-    height: auto;
-}
-
-.dashboard-content-container {
-    margin-top: 2rem;
-    box-shadow: 5px 5px 20px 20px rgba(0,0,0,0.05);
-    border-radius: 20px;
-    padding: 1rem;
-}
-
-.dropcap {
-    font-size: 2rem;
+    font-family: "Montserrat";
     font-weight: bold;
 }
 
+.dashboard-content-container {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.05);
+    border-radius: 20px;
+    padding: 2rem;
+}
+.dashboard-content-container:hover {
+    
+    box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.1);
+    
+}
+
+.container-fluid{
+    width: 90%;
+}
+
 .start-learning-link-container {
-    margin-top: 2rem;
+    margin-top: 5rem;
     text-align: center;
+    margin-bottom: 5%;
 }
 
 .start-learning-link {
@@ -49,4 +44,20 @@ h1 {
     background-color: white;
     padding: 20px 40px;
     text-decoration: none;
+}
+
+.img-center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-bottom: 30px;
+    padding: 15px;
+    border-radius: 30px;
+    }
+
+.dashboard-content-container p {
+    font-family: "Questrial";
+    font-size:19px;
+    text-align:justify;
 }
