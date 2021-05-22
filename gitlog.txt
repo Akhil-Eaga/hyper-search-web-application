@@ -1,0 +1,199 @@
+commit a7d2906eeb78ca659f7a34b1522c599baa222e40
+Author: Akhil-Eaga <44122493+Akhil-Eaga@users.noreply.github.com>
+Date:   Sat May 22 19:12:12 2021 +0800
+
+    minor update
+
+commit 4dcae23ddf392f4b4cab977a4982b93811f8089d
+Author: Akhil-Eaga <44122493+Akhil-Eaga@users.noreply.github.com>
+Date:   Sat May 22 19:00:03 2021 +0800
+
+    Added the statistics feature to readme description
+
+commit 9bb8dd0cf3d7c565ac2edc4c0f7ba56515d97a45
+Author: Akhil-Eaga <44122493+Akhil-Eaga@users.noreply.github.com>
+Date:   Sat May 22 17:21:44 2021 +0800
+
+    Description of the architecture, design and development of the app
+    
+    Detailed explanation of the app's architecture, design and development methodology are given.
+    
+    Clear instructions on how to launch the app are given in this readme file.
+
+commit 7d2f905af80d7874ae6e64debcad1e72fd550a11
+Author: arjun_panicker <panicker.arjun21@gmail.com>
+Date:   Sun May 16 19:25:49 2021 +0800
+
+    Update database.db
+    
+    added my info
+
+commit 5cbbe16a571b718cb74c1ad9210859d80fdd13d9
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Sun May 16 18:08:17 2021 +0800
+
+    removed unnecessary comments and commented out code to clean the scripts
+
+commit 91fc71742d025dfd8ddc4387f44d0e2676bb6ab3
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Sun May 16 18:02:36 2021 +0800
+
+    JS code added for user input validation in the quiz form
+
+commit b43fa026a09409444cf74d7341c69ce5f2f6e8a2
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Sun May 16 09:38:04 2021 +0800
+
+    Admin login form and styling are added. Admin dashboard skeleton is added too
+
+commit 0a30ad58fa784f175c2ac7456cd3c51c9229260a
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Thu May 13 18:56:27 2021 +0800
+
+    added gitignore file
+
+commit 4c7e022e2301dab97ed1ade54c5dfc00bf9c4d7b
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Thu May 13 18:42:20 2021 +0800
+
+    minor styling corrections in the feedback page
+
+commit 6b2a4a33d41d364701653d968335aac42650331d
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Wed May 12 23:54:53 2021 +0800
+
+    bottom margin correction for responsive design
+
+commit dfc03ed8ffc7b3e90afae6c5329ed4b98ea48640
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Wed May 12 23:12:28 2021 +0800
+
+    Stats page content population and styling implemented
+
+commit fabe1b501f9cf845532761947bed7666cd86cebe
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Wed May 12 21:07:23 2021 +0800
+
+    Modified db schema, added stats page skeleton
+
+commit 43af5d3d833f4c9309a1cdd160b9ea1f644f5b2e
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Wed May 12 20:05:06 2021 +0800
+
+    Feedback page content and styling implemented
+
+commit 527f6730818fe0445b5bc0bff545998babdad382
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Wed May 12 16:41:05 2021 +0800
+
+    Added content for quiz page and also styling
+
+commit b9f65973e82fab17f827eaed2aff8bd697efd66f
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Wed May 12 13:43:21 2021 +0800
+
+    Addition of feedback page and its css page
+
+commit 3bf5690b3af41caaae7026eb5e2e94804bc8df31
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Wed May 12 00:28:43 2021 +0800
+
+    visual color  indications for different types of flash messages
+
+commit 6619d792fabdda69931946e796b7ed8f4476e742
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Wed May 12 00:12:20 2021 +0800
+
+    flash messages configuration on invalid form submission
+
+commit d39e4f9c37b6f01c92738938393d47765db50afb
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Tue May 11 23:41:43 2021 +0800
+
+    Footer addition and its styling
+
+commit 6d54154736534bbe1c49ce6de698079a7910ef8a
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Tue May 11 22:54:18 2021 +0800
+
+    Dashboard styling and refactoring
+
+commit 01ced0bbe43bfaa249bcf52c34eec12ad1389f45
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Tue May 11 21:21:37 2021 +0800
+
+    Added learning content and styling
+
+commit 8e51f407d0e13db1e89a48c670ecd9e0e0a5110e
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Tue May 11 18:10:43 2021 +0800
+
+    styling for exercises page - part 1
+
+commit cc7ab03af004ac667a2b71c2760cff6beb0c4d4f
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Tue May 11 02:42:30 2021 +0800
+
+    draft content and styling of the exercises page
+
+commit ba7462532bf40954f1c347c85b666f88684d750b
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Tue May 11 00:21:44 2021 +0800
+
+    minor code formatting changes
+
+commit 0b11cb218399cc4b5846467cb7d0131e31aa46c4
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Mon May 10 23:59:32 2021 +0800
+
+    email validation, styling of login, register and home pages
+
+commit 70ef100c40522b43f9b664822a76997ea4814604
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Mon May 10 19:33:57 2021 +0800
+
+    Addition of quiz page and some code refactoring
+
+commit ec915eca79a482751b97d643c5694492058329d1
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Mon May 10 17:10:01 2021 +0800
+
+    Added flash messages for interactive experience
+
+commit 9534a252a47e46527e969664c6d31ff9b3189a89
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Mon May 10 16:12:28 2021 +0800
+
+    User dashboard and exercises pages added
+
+commit 791438892960052dce094112b75a29598f8db3c0
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Mon May 10 00:56:48 2021 +0800
+
+    Login and Registration Functionality Implemented
+
+commit e1d91fc527086c4d4fcd7e5fe932350dd6c2399f
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Sun May 9 18:07:57 2021 +0800
+
+    Initial commit with the main python script
+
+commit ac52e5486c94f18e633e172d6b76192effbac2e3
+Author: arjun_panicker <panicker.arjun21@gmail.com>
+Date:   Tue May 4 09:22:57 2021 +0800
+
+    Backend-Flask
+    
+    Getting started with Flask for user authentication and login.
+
+commit d6a60e41b1f231504a2785ae9bd06d63462df634
+Author: Akhil-Eaga <44122493+Akhil-Eaga@users.noreply.github.com>
+Date:   Fri Apr 30 15:48:30 2021 +0800
+
+    Update README.md
+
+commit afee822b8292eaed8476331ac88052a1195fb51a
+Author: Akhil-Eaga <44122493+Akhil-Eaga@users.noreply.github.com>
+Date:   Fri Apr 30 15:45:01 2021 +0800
+
+    Initial commit
