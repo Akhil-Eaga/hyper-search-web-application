@@ -1,6 +1,5 @@
 {% extends "admin_loggedinheader.html" %}
 
-{# Comment: Use the block below to add custom styling #}
 {% block styles %}
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename ='css/admin_dashboardpage.css')}}">
 {% endblock %}
@@ -21,15 +20,9 @@
 </div>
 {% endfor %}
 
-<!-- Create a form to add more admins -->
-
-<!-- Create a table to add and delete users -->
-
-<!-- Create a table to see some stats -->
-
 <div class="container">
     <h1>Welcome to admin dashboard</h1>
-    
+
     <div class="five-column-container">
 
         <!-- Add Admin -->
@@ -38,7 +31,7 @@
                 <p>Add admin</p>
             </div>
             <div class="column-content">
-                
+
                 <form action="/admin_dashboard" method="POST" class="form-signin add-admin hide">
                     <div>
                         <!-- <h1 class="form-signin-heading">Add Admin</h1> -->
@@ -68,22 +61,23 @@
                     <p>Reset Stats</p>
                 </div>
                 <div class="column-content">
-                    <button id = "delete-db" class ="btn btn-lg btn-danger" onclick = "sendDeleteDatabaseRequest(event)">Delete Database</button>
+                    <button id="delete-db" class="btn btn-lg btn-danger"
+                        onclick="sendDeleteDatabaseRequest(event)">Delete All Users</button>
                 </div>
             </div>
-            
+
             <div class="user-info-fetch-container row-container">
                 <div class="column-content-heading">
                     <p>User Info</p>
                 </div>
                 <div class="column-content">
-                    <button class="btn btn-lg btn-primary" onclick ="userinfoReveal()">Fetch</button>                
+                    <button class="btn btn-lg btn-primary" onclick="userinfoReveal()">Fetch</button>
                 </div>
             </div>
         </div>
-        
-    <!-- end of five column container -->
-    </div> 
+
+        <!-- end of five column container -->
+    </div>
 
     <div class="user-info custom-box hide">
         <h1> User Information List</h1>
@@ -96,22 +90,23 @@
                     <th>Score</th>
                     <th>Action</th>
                 </tr>
-        
+
                 {% for each_user in range(userlist | length) %}
-                <tr id = "{{ 'id' + (each_user|string) }}">
+                <tr id="{{ 'id' + (each_user|string) }}">
                     <td class="username">{{userlist[each_user][0]}}</td>
                     <td class="email">{{userlist[each_user][1]}}</td>
                     <td class="attempts">{{userlist[each_user][2]}}</td>
                     <td class="score">{{userlist[each_user][3]}}</td>
-                    <td class="delete-button-container"><button id = "{{each_user}}" class ="delete-user-btn" onclick = "sendDeleteRequest(event)">Delete this user</button></td>
+                    <td class="delete-button-container"><button id="{{each_user}}" class="delete-user-btn"
+                            onclick="sendDeleteRequest(event)">Delete this user</button></td>
                 </tr>
                 {% endfor %}
-            </table>  
-        </div> 
+            </table>
+        </div>
         <div class="close-button-container">
             <button type="button" class="btn btn-lg btn-primary" onclick="userinfoHide()">Close</button>
         </div>
-        
+
     </div>
     <div class="empty-div"></div>
 </div>

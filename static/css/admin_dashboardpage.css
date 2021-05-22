@@ -134,6 +134,11 @@ label {
     text-align: center;
 }
 
+.delete-button-container {
+    display: flex;
+    align-content: center;
+}
+
 .delete-user-btn {
     background-color: #e37268;
     width: 100%;
@@ -166,11 +171,10 @@ label {
     padding-bottom:5px;
 }
 
-
-/* 
-.delete-user-btn[disabled = "True"]:hover {
-    background-color: #fbebe9;
-    color: #e37268 ;
-    box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.041);
-} */
+.errors li {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: rgb(190, 190, 190);
+    list-style: none;
+}
 

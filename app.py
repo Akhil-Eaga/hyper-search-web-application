@@ -1,3 +1,4 @@
+# importing necessary python and flask libraries
 import os
 import sys
 from flask import Flask, render_template, redirect, url_for, flash, request,jsonify
@@ -14,7 +15,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 # app initialization and configuration settings
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "mysecretkey"
+app.config["SECRET_KEY"] = "jkshdfkafkanvjjgbajlgbsldfgjlfngbjhlsbfgjsbgjlsbdfgjklsbdfgjklsjklgjkl"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "database.db")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -23,6 +24,8 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
+# overwriting the default login view from "login" to "admin_login"
+# this is written in this way to be able to quickly find, remove and edit admin related fucntionality
 login_manager.login_view = "admin_login"
 
 # User Database model
@@ -44,8 +47,6 @@ class User(UserMixin, db.Model):
         self.correct = 0
         self.wrong = 0
         self.score = 0.0
-        
-        # self.isComplete = "Incomplete"
 
 # Admin Database model
 class Admin(UserMixin, db.Model):
@@ -54,12 +55,12 @@ class Admin(UserMixin, db.Model):
     email = db.Column(db.String(50), unique = True)
     password = db.Column(db.String(15))
 
-
     def __init__(self, username, email, password):
         self.username = username
         self.email = email
         self.password = password
 
+# method to load the user upon input of successful login credentials
 @login_manager.user_loader
 def load_user(user_id):
     # this is used for user login but not for admin login
@@ -68,7 +69,10 @@ def load_user(user_id):
     else:
         print("No user found, looking for admin..")
         return Admin.query.get(int(user_id))
-# FORMS
+
+###########################################################################################
+##########################              FORMS          ####################################
+###########################################################################################
 
 # login form used to create the login form fields and data validation
 class LoginForm(FlaskForm):
@@ -96,9 +100,9 @@ class AdminAdditionForm(FlaskForm):
     email = StringField("Email", validators=[InputRequired("Please enter your email address"), Email("Invalid email address"), Length(max=50, message = "Max email address length is 50 characters")])
     password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80, message = "Admin Password should be atleast 8 characters long")])
 
-######################################################################
-########################## ROUTES ####################################
-######################################################################
+###########################################################################################
+##########################              ROUTES         ####################################
+###########################################################################################
 
 # index route or home page route
 @app.route('/')
@@ -147,7 +151,6 @@ def login():
 @app.route('/logout')
 @login_required
 def logout():
-    # ---------------- before logging out the user save the quiz data into the database ------------------
     logout_user()
     flash("You are logged out")
     return redirect(url_for('index'))
@@ -187,7 +190,9 @@ def signup():
 def dashboard():
     return render_template("dashboard.html", page_title = "Dashboard", name = current_user.username.lower().capitalize())
 
-# ------------- ADMIN ROUTING ----------------#
+###########################################################################################
+##########################          ADMIN ROUTES       ####################################
+###########################################################################################
 
 # admin login route
 @app.route('/admin_login', methods=['GET', 'POST'])
@@ -215,8 +220,6 @@ def admin_login():
     return render_template("admin_login.html", page_title="Admin Login", form=form)
 
 
-
-
 # admin_dashboard route - can be accessed only after loggin in with admin creds
 @app.route("/admin_dashboard", methods = ['GET', 'POST'])
 @login_required
@@ -232,14 +235,14 @@ def admin_dashboard():
             db.session.add(new_admin)
             db.session.commit()
             flash("New admin has been added to the database")
-            # return redirect(url_for('admin_dashboard'))
+            return redirect(url_for('admin_dashboard'))
         else:
             flash("Not a unique admin name or admin email")
-            # return redirect(url_for('admin_dashboard')) 
+            return redirect(url_for('admin_dashboard')) 
     else:
         if(len(list(form.errors.values())) > 0):
             flash(list(form.errors.values())[0][0])
-            # return redirect(url_for('admin_dashboard'))
+            return redirect(url_for('admin_dashboard'))
 
     # passing user info
     data = User.query.all()
@@ -247,9 +250,6 @@ def admin_dashboard():
     
     for users in data:
         userlist.append([users.username, users.email, users.attempt, users.score])
-    # query the user database and show the user database in the dashboard
-    # create a form to add more admins or delete the admins
-    # show some stats
     return render_template("admin_dashboard.html", page_title = "Admin Dashboard", userlist=userlist, form = form)
 
 
