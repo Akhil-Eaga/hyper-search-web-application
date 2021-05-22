@@ -7,9 +7,6 @@
 
 {% block content %}
 <div class="container">
-    <div>
-        <h2>Learning activities</h2>
-    </div>
     <div id="demo" class="carousel slide" data-ride="carousel" data-interval=false data-wrap=false>
 
         <!-- Indicators -->
@@ -30,262 +27,207 @@
 
         <!-- The slideshow -->
         <div class="carousel-inner">
-            <!-- Slide 0 -->
+            <!-- Slide 0 new -->
             <div class="carousel-item active">
                 <div class="intro-slide each-slide">
-                    <h1>EXERCISES</h1>
-                    <p>In this slide deck, we will learn together some of the most useful techniques to search the web.
-                    </p>
-                    <p>Thoroughout the tutorial, we will be learning 10 techniques to search web.</p>
-                    <br>
-                    <p><em>&lt; Use the arrows on these slides to navigate back and forth &gt;</em></p>
+                    <h1>Let's learn to search better on google.</h1>
+                    <ul class="each-slide-info-list">
+                        <li>Starting from this slide you will see a Google Search box with some <em> important flags</em> in the placeholder field for you to try out.</li>
+                        <li>As you progress through each slide,type the flag into the search box to see how each flag affects your search result</li>
+                        <li>After typing in the search box click the <strong>"HyperSearch"</strong> button or simply press <strong>Return/Enter</strong> on your keyboard to load the search on a new tab.</li>
+                        <li>Let's try searching for a smiling baby yoda's picture on google.Try typing baby-yoda-happy. Notice how <strong>" - hypen "</strong> is used to link to each words.</li>
+                    </ul>
+                    <div class="hypersearch">
+                        <img class="img-center" src="static/images/babyYoda.png" alt="babyyoda">
+                        <form class="gSearch" action="https://www.google.com/search" target="_blank">
+                            <input class="gSearch-text" type="text" name="q" placeholder="baby-yoda-happy">
+                            <input class="gSearch-btn"  type="submit" value="HyperSearch" >
+                        </form>
+                    </div> 
                 </div>
             </div>
-            <!-- Slide 1 -->
+            <!-- Slide 1 new -->
             <div class="carousel-item">
                 <div class="each-slide">
-                    <h3>Technique 1:</h3>
-                    <strong>Search social media</strong>
-                    <br>
-                    <p>Want to search for someone on social media? Try adding the "@socialmedianame" in the search.
-                    </p>
-                    <p>For example, if you want to find my profile on GitHub</p>
-                    <br>
-                    <div class="searchbar">
-                        <p><i class="ion-search"></i>Akhil Eaga @GitHub</p>
+                    <h1>Quickly find social media handle of someone.</h1>
+                    <ul class="each-slide-info-list">
+                        <li>Let's say you wanna follow Elon Musk on twitter to capitalize on the next DogeCoin wave but you don't remeber this twitter handle.</li>
+                        <li>Try adding the "@socialmedianame" in the search along with the name query.</li>
+                        <li>For example, try typing Elon Musk @Twitter.</li>
+                    </ul>
+                    <div class="hypersearch">
+                        <img class="img-center" src="static/images/elon-musk.jpg" alt="elon-musk">
+                        <form class="gSearch" action="https://www.google.com/search" target="_blank">
+                            <input class="gSearch-text" type="text" name="q" placeholder="Elon-Musk @twitter">
+                            <input class="gSearch-btn"  type="submit" value="HyperSearch" >
+                        </form>
                     </div>
-                    <br>
-                    <p>Give it a try and check the number of the results google returns.</p>
-                    <p>Click on the buttons below to check the effect of a refined search criteria.</p>
-                    <br>
-                    <a class="before-refinement-link" href="https://www.google.com/search?q=Akhil+Eaga+GitHub"
-                        target="_blank">Result of normal search</a>
-                    <a class="after-refinement-link" href="https://www.google.com/search?q=Akhil+Eaga+%40GitHub"
-                        target="_blank">Result of refined search</a>
                 </div>
             </div>
-            <!-- Slide 2 -->
+            <!-- Slide 2 new -->
             <div class="carousel-item">
                 <div class="each-slide">
-                    <h3>Technique 2:</h3>
-                    <strong>Search hashtags</strong>
-                    <br>
-                    <p>Want to search for some popular trends? Try adding the "#hastag" in the search.
-                    </p>
-                    <p>For example, if you want to find the hashtag "throwbackthursday"</p>
-                    <br>
-                    <div class="searchbar">
-                        <p><i class="ion-search"></i>#throwbackthursday</p>
+                    <h1>Search information relevant to a #hashtag.</h1>
+                    <ul class="each-slide-info-list">
+                        <li>Try adding the "#" in the search along with your name query. </li>
+                        <li>For example, if you want to find the hashtag #BillieEilish.</li>
+                    </ul>
+                    <div class="hypersearch">
+                            <img class="img-center" src="static/images/beilish.jpg" alt="#BillieEilish">
+                            <form class="gSearch" action="https://www.google.com/search" target="_blank">
+                                <input class="gSearch-text" type="text" name="q" placeholder="#BillieEilish">
+                                <input class="gSearch-btn"  type="submit" value="HyperSearch" >
+                            </form>
+                        </div>
                     </div>
-                    <br>
-                    <p>Give it a try and notice the difference in the relevance of results.</p>
-                    <p>Click on the buttons below to check the effect of a refined search criteria.</p>
-                    <br>
-                    <a class="before-refinement-link" href="https://www.google.com/search?q=throwbackthursday"
-                        target="_blank">Result of normal search</a>
-                    <a class="after-refinement-link" href="https://www.google.com/search?q=%23throwbackthursday"
-                        target="_blank">Result of refined search</a>
+                </div>
+            <!-- Slide 3 new -->
+            <div class="carousel-item">
+                <div class="each-slide">
+                    <h1>Exclude certain words from search result.</h1>
+                    <ul class="each-slide-info-list">
+                        <li>Let's say you want to find famous people named Steve other than Steve Jobs. </li>
+                        <li>Given Steve Job's popularity finding any one with a similar name will be challenging.One tips is to try removing Apple from search results.</li>
+                        <li>Try adding the "- keyword" in the search. For example, Steve -Apple</li>
+                    </ul>
+                    <div class="hypersearch"><img class="img-center" src="static/images/steve.jpg" alt="steve-not-apple">
+                            <form class="gSearch" action="https://www.google.com/search" target="_blank">
+                                    <input class="gSearch-text" type="text" name="q" placeholder="Steve -Apple">
+                                    <input class="gSearch-btn"  type="submit" value="HyperSearch" >
+                            </form> 
+                        </div>
+                    </div>
+            </div>    
+            <!-- Slide 4 new -->            
+
+            <div class="carousel-item">
+                <div class="each-slide">
+                    <h1>Find results that match the exact keyword!</h1>
+                    <ul class="each-slide-info-list">
+                        <li>Want to search for an exact phrase? Try wrapping the search in double quotes.</li>
+                        <li>For example, to find the belgian waffles recipes type "Belgian Waffles Recipes"</li>
+                    </ul>
+                    <div class="hypersearch">
+                        <img class="img-center" src="static/images/belgian-waffles.jpg" alt="belgian-waffle">
+                        <form class="gSearch" action="https://www.google.com/search" target="_blank">
+                            <input class="gSearch-text" type="text" name="q" placeholder='"Belgian Waffles Recipes"'>
+                            <input class="gSearch-btn"  type="submit" value="HyperSearch" >
+                        </form>
+                    </div>
                 </div>
             </div>
-            <!-- Slide 3 -->
+
+
+            <!-- Slide 5 new -->
             <div class="carousel-item">
                 <div class="each-slide">
-                    <h3>Technique 3:</h3>
-                    <strong>Exclude words from search</strong>
-                    <br>
-                    <p>Want to excludes some words in your search? Try adding the "- remove_this_word" in the search.
-                    </p>
-                    <p>For example, if you want to search for mustang but not the car</p>
-                    <br>
-                    <div class="searchbar">
-                        <p><i class="ion-search"></i>mustang -car</p>
+                    <h1>Find something on a specific site. Great way to search for hidden deals!</h1>
+                    <ul class="each-slide-info-list">
+                        <li>Want to search for articles or content on specific site? Try adding the "site:website.com" at the end.</li>
+                        <li>Let's say you wish to buy the latest Virtual Reality (VR) Headset from amazon.com.au try, VR Headset site:amazon.com.au</li>
+                    </ul>                    
+                    <div class="hypersearch">
+                        <img class="img-center" src="static/images/oculus.jpg" alt="vr-headset">
+                        <form class="gSearch" action="https://www.google.com/search" target="_blank">
+                            <input class="gSearch-text" type="text" name="q" placeholder='VR Headset site:amazon.com.au'>
+                            <input class="gSearch-btn"  type="submit" value="HyperSearch" >
+                        </form>
                     </div>
-                    <br>
-                    <p>Give it a try and notice the difference in the relevance of results.</p>
-                    <p>Click on the buttons below to check the effect of a refined search criteria.</p>
-                    <br>
-                    <a class="before-refinement-link" href="https://www.google.com/search?q=mustang"
-                        target="_blank">Result of normal search</a>
-                    <a class="after-refinement-link" href="https://www.google.com/search?q=mustang+-car"
-                        target="_blank">Result of refined search</a>
                 </div>
             </div>
-            <!-- Slide 4 -->
+            <!-- Slide 6 new -->
             <div class="carousel-item">
                 <div class="each-slide">
-                    <h3>Technique 4:</h3>
-                    <strong>Search for exact match</strong>
-                    <br>
-                    <p>Want to search for an exact phrase? Try wrapping the search in double quotes.
-                    </p>
-                    <p>For example, if you want to find the Puppy Dog Sweaters, then use the following:</p>
-                    <br>
-                    <div class="searchbar">
-                        <p><i class="ion-search"></i>"Puppy Dog Sweaters"</p>
+                    <h1>Filter news by source. </h1>
+                    <ul class="each-slide-info-list">
+                        <li>Let's say, before investing in Google's stocks you want to find out whether the latest news about Google's upcoming technology is from a 
+                            trusted source of yours or not. </li>
+                        <li>One way of doing it is by using this "keyword source:source_name".</li>
+                        <li>For example, google source:9to5google.</li>
+                    </ul>
+                    <div class="hypersearch"><img class="img-center" src="static/images/g-news.jpeg" alt="google-news">
+                        <form class="gSearch" action="https://www.google.com/search" target="_blank">
+                            <input class="gSearch-text" type="text" name="q" placeholder='google source:9to5google'>
+                            <input class="gSearch-btn"  type="submit" value="HyperSearch" >
+                        </form>
                     </div>
-                    <br>
-                    <p>If you don't wrap them, in quotes, the words can occur in any sequence in the search results</p>
-                    <p>Notice the difference in the number of search results returned.</p>
-                    <br>
-                    <a class="before-refinement-link" href="https://www.google.com/search?q=puppy+dog+sweaters"
-                        target="_blank">Result of normal search</a>
-                    <a class="after-refinement-link" href="https://www.google.com/search?q=%22puppy+dog+sweaters%22"
-                        target="_blank">Result of refined search</a>
+                    
                 </div>
             </div>
-            <!-- Slide 5 -->
+            <!-- Slide 7 new -->
             <div class="carousel-item">
                 <div class="each-slide">
-                    <h3>Technique 5:</h3>
-                    <strong>Search on specific sites</strong>
-                    <br>
-                    <p>Want to search for articles or content on specific site? Try adding the "site:website.com" at the
-                        end.
-                    </p>
-                    <p>For example, if you want to search for Sidney Crosby on nhl.com, then use the following:</p>
-                    <br>
-                    <div class="searchbar">
-                        <p><i class="ion-search"></i>Sidney Crosby site:nhl.com</p>
+                    <h1>Search for similar sites.</h1>
+                    <ul class="each-slide-info-list">
+                        <li>Bored using Facebook?</li>
+                        <li>Let's search for websites similar to Facebook using the "related:website.com" flag.</li>
+                        <li>For example, related:facebook.com</li>
+                    </ul>                    
+                    <div class="hypersearch"><img class="img-center" src="static/images/like.png" alt="related-sites">
+                        <form class="gSearch" action="https://www.google.com/search" target="_blank">
+                            <input class="gSearch-text" type="text" name="q" placeholder='related:facebook.com'>
+                            <input class="gSearch-btn"  type="submit" value="HyperSearch" >
+                        </form> 
                     </div>
-                    <br>
-                    <p>Notice the difference in the number of search results returned.</p>
-                    <p>Use the buttons below to check this technique in action.</p>
-                    <br>
-                    <a class="before-refinement-link" href="https://www.google.com/search?q=sidney+crosby"
-                        target="_blank">Result of normal search</a>
-                    <a class="after-refinement-link" href="https://www.google.com/search?q=sidney+crosby+site%3Anhl.com"
-                        target="_blank">Result of refined search</a>
+                                       
                 </div>
             </div>
-            <!-- Slide 6 -->
+            <!-- Slide 8 new-->
             <div class="carousel-item">
                 <div class="each-slide">
-                    <h3>Technique 6:</h3>
-                    <strong>Search for pages that link to specific page</strong>
-                    <br>
-                    <p>Want to search for sites link to a specific site? Try using the "link:website.com".
-                    </p>
-                    <p>For example, if you want to search for sites that link to Newyork times website, then:</p>
-                    <br>
-                    <div class="searchbar">
-                        <p><i class="ion-search"></i>link:nytimes.com</p>
-                    </div>
-                    <br>
-                    <p>This search returns all pages that link to New York Times official website.</p>
-                    <p>It is even hard to think of the search phrase for this criteria. Isn't it ?</p>
-                    <br>
-                    <a class="before-refinement-link" href="https://www.google.com/search?q=sites+that+link+to+nytimes"
-                        target="_blank">Result of normal search</a>
-                    <a class="after-refinement-link" href="https://www.google.com/search?q=link%3Anytimes.com"
-                        target="_blank">Result of refined search</a>
+                    <h1>Search for multiple phrases</h1>
+                    <ul class="each-slide-info-list">
+                        <li>Let's you want to search for sites that contain either " Dark Chocolate" or "Milk Chocolate"</li>
+                        <li>Try Dark Chocolate OR Milk Chocolate.</li>
+                    </ul>
+                    <div class="hypersearch"><img class="img-center" src="static/images/darkmilkchoc.jpg" alt="dark-or-milk">
+                        <form class="gSearch" action="https://www.google.com/search" target="_blank">
+                            <input class="gSearch-text" type="text" name="q" placeholder='Dark Chocolate OR Milk Chocolate'>
+                            <input class="gSearch-btn"  type="submit" value="HyperSearch" >
+                        </form> 
+                    </div>                    
                 </div>
             </div>
-            <!-- Slide 7 -->
+            <!-- Slide 9 new -->
             <div class="carousel-item">
                 <div class="each-slide">
-                    <h3>Technique 7:</h3>
-                    <strong>Search for similar sites</strong>
-                    <br>
-                    <p>Want to search for sites similar to your favourite site? Try using the "related:website.com".
-                    </p>
-                    <p>For example, if you want to search for sites that are similar to amazon.com</p>
-                    <br>
-                    <div class="searchbar">
-                        <p><i class="ion-search"></i>related:amazon.com</p>
+                    <h1>Search for specific filetypes</h1>
+                    <ul class="each-slide-info-list">
+                        <li> Want to search for resources that are of specific filetype? Use the " filetype:type_of_file ".</li>
+                        <li>For example, if you want to search for pdf documents on programming resources</li>
+                        <li> Try searching for JavaScript Programming pdfs</li>
+                    </ul>
+                    <div class="hypersearch"><img class="img-center" src="static/images/pdf.png" alt="pdf">
+                        <form class="gSearch" action="https://www.google.com/search" target="_blank">
+                            <input class="gSearch-text" type="text" name="q" placeholder=' JavaScript Programming filetype:pdf'>
+                            <input class="gSearch-btn"  type="submit" value="HyperSearch" >
+                        </form> 
                     </div>
-                    <br>
-                    <p>This search returns all pages are similar to amazon.com</p>
-                    <p>Notice the difference in the number of search results returned.</p>
-                    <br>
-                    <a class="before-refinement-link" href="https://www.google.com/search?q=sites+similar+to+amazon.com"
-                        target="_blank">Result of normal search</a>
-                    <a class="after-refinement-link" href="https://www.google.com/search?q=related%3Aamazon.com"
-                        target="_blank">Result of refined search</a>
+                    
                 </div>
             </div>
-            <!-- Slide 8 -->
+            <!-- Slide 10 new  -->
             <div class="carousel-item">
                 <div class="each-slide">
-                    <h3>Technique 8:</h3>
-                    <strong>Search for multiple phrases</strong>
-                    <br>
-                    <p>Want to search for multiple words or phrases at once? Try using the "OR".
-                    </p>
-                    <p>For example, if you want to search for sites that contain "chocolate" or "white chocolate"</p>
-                    <br>
-                    <div class="searchbar">
-                        <p><i class="ion-search"></i>chocolate OR white chocolate</p>
+                    <h1>Search using wildcard *</h1>
+                    <ul class="each-slide-info-list">
+                        <li>Recollect only a few words of a song but want to search for it? </li>
+                        <li>Use the ' * ' to search for the songs with missing lyrics</li>
+                        <li>Type "never * give * up" and see what comes up!</li>
+                    </ul>
+                    <div class="hypersearch"><img class="img-center" src="static/images/rick-rolled.jpg" alt="rick-rolled.">
+                        <form class="gSearch" action="https://www.google.com/search" target="_blank">
+                            <input class="gSearch-text" type="text" name="q" placeholder=' Never * Give * Up'>
+                            <input class="gSearch-btn"  type="submit" value="HyperSearch" >
+                        </form> 
                     </div>
-                    <br>
-                    <p>This search returns all pages that have either chocolate or white chocolate</p>
-                    <p>Notice the increase in the number of search results returned.</p>
-                    <br>
-                    <a class="before-refinement-link" href="https://www.google.com/search?q=white+chocolate"
-                        target="_blank">Result of normal search</a>
-                    <a class="after-refinement-link" href="https://www.google.com/search?q=chocolate+OR+white+chocolate"
-                        target="_blank">Result of refined search</a>
-                </div>
-            </div>
-            <!-- Slide 9 -->
-            <div class="carousel-item">
-                <div class="each-slide">
-                    <h3>Technique 9:</h3>
-                    <strong>Search for specific filetypes</strong>
-                    <br>
-                    <p>Want to search for resources that are of specific filetype? Use the "filetype:type_of_file".
-                    </p>
-                    <p>For example, if you want to search for pdf documents on programming resources</p>
-                    <br>
-                    <div class="searchbar">
-                        <p><i class="ion-search"></i>Programming Resources filetype:pdf</p>
-                    </div>
-                    <br>
-                    <p>This search returns pages that have programming resources in pdf format</p>
-                    <p>Notice the increase in the number of search results returned.</p>
-                    <br>
-                    <a class="before-refinement-link" href="https://www.google.com/search?q=programming+resource+pdf"
-                        target="_blank">Result of normal search</a>
-                    <a class="after-refinement-link"
-                        href="https://www.google.com/search?q=programming+resource+filetype%3Apdf"
-                        target="_blank">Result of refined search</a>
-                </div>
-            </div>
-            <!-- Slide 10 -->
-            <div class="carousel-item">
-                <div class="each-slide">
-                    <h3>Technique 10:</h3>
-                    <strong>Search using wildcard *</strong>
-                    <br>
-                    <p>Recollect only a few words of a song but want to search for it? Use the "*".
-                    </p>
-                    <p>For example, if you want to search for the song "Never Gonna Give You Up" but missed some words:
-                    </p>
-                    <br>
-                    <div class="searchbar">
-                        <p><i class="ion-search"></i>Never * Give * Up</p>
-                    </div>
-                    <br>
-                    <p>This search returns resources by making the * match with any word.</p>
-                    <p>Notice the increased relvance in results.</p>
-                    <br>
-                    <a class="before-refinement-link" href="https://www.google.com/search?q=never+give+up"
-                        target="_blank">Result of normal search</a>
-                    <a class="after-refinement-link" href="https://www.google.com/search?q=never+*+give+*+up"
-                        target="_blank">Result of refined search</a>
+                    
                 </div>
             </div>
             <!-- Slide 11 -->
             <div class="carousel-item">
-                <div class="each-slide">
-                    <h3>TIME TO PUT YOUR SKILLS TO TEST</h3>
-                    <br>
-                    <p>In the following quiz, you will assess your understanding of the techniques.</p>
-
-                    <br>
-                    <div class="searchbar">
-                        <p><i class="ion-search"></i>From now on you can search the web effectively !</p>
-                    </div>
-                    <br>
+                <div class="each-slide last-slide">
+                    <h3 class = "last-slide-heading">TIME TO PUT YOUR SKILLS TO TEST</h3>
                     <div class="start-quiz-link-container">
                         <a class="start-quiz-link" href="{{url_for('quiz')}}">Take the quiz</a>
                     </div>
@@ -301,6 +243,7 @@
             <span class="carousel-control-next-icon"></span>
         </a>
 
+    </div>
     </div>
 </div>
 {% endblock %}

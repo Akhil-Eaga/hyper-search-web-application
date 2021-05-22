@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
 
 {% block styles %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/signuppage.css') }}">
@@ -9,7 +10,7 @@
 
 {% for each_message in get_flashed_messages() %}
 <div class="alert alert-info alert-dismissible fade show" role="alert">
-    {{ each_message }}
+    {{each_message}}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -24,13 +25,13 @@
                 {{ form.hidden_tag() }}
             </div>
             <div>
-                {{ form.email.label}}<br>{{form.email}}
+                {{ render_field(form.email, class='form-control', placeholder='Enter Email') }}
             </div>
             <div>
-                {{ form.username.label}}<br>{{form.username}}
+                {{ render_field(form.username, class='form-control', placeholder='Enter Username') }}
             </div>
             <div>
-                {{form.password.label}}<br>{{form.password}}
+                {{ render_field(form.password, class='form-control', placeholder='Enter Password') }}
             </div>
             <br>
             <div>

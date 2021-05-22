@@ -1,3 +1,4 @@
+{% from "_formhelpers.html" import render_field %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learn how to effectively search on Google">
-    <title>{{ page_title }} - Hyper Search</title>
+    <title>{{ page_title }} - HyperSearch</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -36,6 +37,9 @@
     <!-- Custom but common styles -->
     <link rel="stylesheet" href="{{url_for('static', filename = 'css/styles.css')}}">
 
+    <!-- jQuery CDN link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
     <!-- Add custom style sheets from individual html pages -->
     {% block styles %}
     {% endblock %}
@@ -48,7 +52,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{{url_for('admin_dashboard')}}">Hyper Search</a>
+        <a class="navbar-brand" href="{{url_for('admin_dashboard')}}">HyperSearch</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -80,7 +84,7 @@
     {% endblock %}
 
     <footer>
-        <div class="loggedinheaderpage-footer">
+        <div class="loggedinheaderpage-admin-footer">
             <p>&#169; Copyright 2021 - Created by Akhil Eaga and Arjun Panicker</p>
         </div>
     </footer>

@@ -6,37 +6,24 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>Welcome, {{ name }} </h1>
-    <div class="hero-image-container">
-        <img src="{{url_for('.static', filename='images/google_snippet_for_dashboard.jpg')}}"
-            alt="an image of google search engine with a question written in the search bar" style="margin: auto;">
+<div class="container-fluid">
+    <h1>Welcome, {{ name }} </h1>   
+    
+    <div class="dashboard-content-container">
+        <img class="img-center" src="/static/images/default.png" alt="an image of google search engine with a question written in the search bar" style="margin: auto;"></img>
+        <p><strong><em>HyperSearch</em></strong> is a simple web application that teaches one to use various flags/filters one can use
+            to improve their google search results. Regardless of whether you are a student, professor, journalist, programmer or just about anyone who loves googling*
+            you will find something useful in this tutorial.  The excercises will provide ample of practice to quickly get you up and running.
+            We have designed a small questionaire to test your newly learned skill. The whole learning process is designed to complete under 10 mins. 
+             Click on the  "Jump to learning" button below  or "Excercises" tab on the top left to begin HyperSearching.
+        </p>
+        
     </div>
     <div class="start-learning-link-container">
         <a class="start-learning-link" href="{{url_for('exercises')}}">Jump into learning</a>
     </div>
-    <div class="dashboard-content-container">
-        <p>
-            <span class="dropcap">H</span>yper Search is a web application created by 2 programmers (Akhil Eaga, Arjun
-            Panicker) from the University
-            of Western Australia. This
-            tool
-            teaches you useful tips and techniques that can quicken your search process.
-        </p>
-
-        <p>
-            Whether you are a student or a professor, journalist or a news reader, programmer or just casual internet
-            surfer, you will find something useful in this tutorial.
-        </p>
-        <p>
-            In this app, you will progress through a series of interactive learning activities that teaches you the
-            various scenarios where you can use the techniques learnt. After that you can put your new found skills to
-            test by taking the quiz !!!
-        </p>
-        <p>
-            So without further ado, let's start our search :P
-        </p>
-    </div>
+    
+    
 
 </div>
 

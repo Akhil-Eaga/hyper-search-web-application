@@ -28,10 +28,10 @@
 
     <!-- Google Fonts Links -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
 
     <!-- Custom but common styles -->
     <link rel="stylesheet" href="{{url_for('static', filename = 'css/styles.css')}}">
@@ -51,7 +51,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{{url_for('dashboard')}}">Hyper Search</a>
+        <a class="navbar-brand" href="{{url_for('dashboard')}}">HyperSearch</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -76,9 +76,7 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="{{url_for('quiz')}}">Quiz</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="{{url_for('feedback')}}">Feedback</a>
-                </li>
+                
                 <li class="nav-item active">
                     <a class="nav-link" href="{{url_for('logout')}}">Logout <span class="sr-only">(current)</span></a>
                 </li>

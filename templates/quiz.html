@@ -2,16 +2,15 @@
 
 {# Comment: Use the block below to add custom styling #}
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/quizpage.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/quiz.css')}}">
 {% endblock %}
 
 {% block scripts %}
-<script src="{{url_for('static', filename = 'js/quizpagescript.js')}}"></script>
+ 
 {% endblock %}
 
 
 {% block content %}
-
 {% for each_message in get_flashed_messages() %}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
     {{ each_message }}
@@ -21,106 +20,104 @@
 </div>
 {% endfor %}
 
-
 <div class="container">
-    {% if quiz_answers | length == 10 %}
-    <div class="assessment-messages-container">
-        <p>You have already taken the assessment previously. Check the <a href="{{url_for('feedback')}}">feedback</a>
-            page
-            to see your results.</p>
-        <p>If you want to retake the test, fill in the answers and submit again.</p>
-        <p>** Please note that only your latest submission will be saved.</p>
+    
+<div class="instruction-box custom-box">
+    <h3>Instruction:</h3>
+    <br>
+    <p>Total number of questions: <span class="total-question"></span></p>
+    
+    <div class="button-container">
+        <button type="button" class="btn" onclick="startQuiz()">Start Quiz</button>
+        <button type="button" class="btn" onclick="pastQuiz()">Past Attempts: {{TotalAttempt}}</button>
     </div>
-    {% endif %}
-
-    <h2 class="form-signin-heading">Assessment:</h2>
-    <p>
-        <i>This assessment will give you hands-on experience of phrasing your own search criteria and uses very strict
-            guidelines to assess your submissions. So please read the instructions below carefully and then attempt the
-            quiz.</i>
-    </p>
-    <small><strong>** Instructions: **</strong></small>
-    <small>
-        <ol>
-            <li>All questions are mandatory</li>
-            <li>Only use lowercase letters in the answer fields</li>
-            <li>Don't use any trailing or leading spaces</li>
-            <li>Use only one space to separate words or phrases</li>
-        </ol>
-    </small>
-    <form action="/quiz" method="POST" class="form-quiz">
-        <!-- Hidden tag to take care of CSRF -->
-        <div>
-            {{ form.hidden_tag() }}
-        </div>
-        <!-- Question 1 -->
-        <div class="each-question">
-            {{ form.question1.label }}
-            <br>
-            {{ form.question1 }}
-        </div>
-        <!-- Question 2 -->
-        <div class="each-question">
-            {{ form.question2.label }}
-            <br>
-            {{ form.question2 }}
-        </div>
-        <!-- Question 3 -->
-        <div class="each-question">
-            {{ form.question3.label }}
-            <br>
-            {{ form.question3 }}
-        </div>
-        <!-- Question 4 -->
-        <div class="each-question">
-            {{ form.question4.label }}
-            <br>
-            {{ form.question4 }}
-        </div>
-        <!-- Question 5 -->
-        <div class="each-question">
-            {{ form.question5.label }}
-            <br>
-            {{ form.question5 }}
-        </div>
-        <!-- Question 6 -->
-        <div class="each-question">
-            {{ form.question6.label }}
-            <br>
-            {{ form.question6 }}
-        </div>
-        <!-- Question 7 -->
-        <div class="each-question">
-            {{ form.question7.label }}
-            <br>
-            {{ form.question7 }}
-        </div>
-        <!-- Question 8 -->
-        <div class="each-question">
-            {{ form.question8.label }}
-            <br>
-            {{ form.question8 }}
-        </div>
-        <!-- Question 9 -->
-        <div class="each-question">
-            {{ form.question9.label }}
-            <br>
-            {{ form.question9 }}
-        </div>
-        <!-- Question 10 -->
-        <div class="each-question">
-            {{ form.question10.label }}
-            <br>
-            {{ form.question10 }}
-        </div>
-
-        <br>
-        <div class="quiz-buttons-container">
-            <!-- Submit Quiz Button -->
-            <button class="submit-quiz-button" type="submit" class="btn btn-lg btn-primary">Submit</button>
-        </div>
-        <!-- End of the form -->
-    </form>
+    
+    <h1 id="pScore">{{pScore}}</h1>
+    <h1 id="pWrong">{{pWrong}}</h1>
+    <h1 id="pCorrect">{{pCorrect}}</h1>
+    <h1 id="pAttempt">{{TotalAttempt}}</h1>
+</div>
+<div class="questions-box custom-box hide">
+    
+    <div class="question-number"></div>
+    <div class="question-text"></div>
+    <div class="option-container"></div>
+    
+    <div class="next-question-btn">
+       <button type="button" class="btn" onclick="next()">Next</button>
+       <form class="gSearch" action="https://www.google.com/search" target="_blank">
+            <input class="gSearch-text" type="text" name="q" placeholder="Attempt your answer here! Press Enter to Search..">
+        </form>
+    </div>
+    <div class="answers-indicator"></div>
 </div>
 
+<div class="result-box custom-box hide">
+    <h1>Quiz Result</h1>
+    <table>
+       <tr>
+           <td>Total Question</td>
+           <td><span class="total-question"></span></td>
+       </tr>
+       <tr>
+           <td>Attempted Questions: </td>
+           <td><span class="total-attempt"></span></td>
+       </tr>
+       <tr>
+           <td>Correct Answers: </td>
+           <td><span class="total-correct"></span></td>
+       </tr>
+       <tr>
+           <td>Wrong Answers: </td>
+           <td><span class="total-wrong"></span></td>
+       </tr>
+       <tr>
+           <td>Percentage:</td>
+           <td><span class="percentage"></span></td>
+       </tr>
+       <tr>
+           <td>Final Score:</td>
+           <td><span class="total-score"></span></td>
+       </tr>
+    </table>
+    <div class="button-container">
+        <button type="button" class="btn" onclick="tryAgainQuiz()">Try Again</button>
+        <button type="button" class="btn" onclick="goToDashboard()()">Dashboard</button>
+    </div>
+    
+</div>
+
+<div class="prev-result-box custom-box hide">
+    <h1>Previous Quiz Result</h1>
+    <table>
+       <tr>
+           <td>Total Question</td>
+           <td><span class="total-question"></span></td>
+       </tr>
+       <tr>
+           <td>Attempt No</td>
+           <td><span class="total-attempt"></span></td>
+       </tr>
+       <tr>
+           <td>Correct Answers</td>
+           <td><span class="total-correct"></span></td>
+       </tr>
+       <tr>
+           <td>Wrong Answers</td>
+           <td><span class="total-wrong"></span></td>
+       </tr>
+       <tr>
+           <td>Your Total Score</td>
+           <td><span class="total-score"></span></td>
+       </tr>
+    </table>
+    <div class="button-container">
+        <button type="button" class="btn" onclick="tryAgainQuiz()">Try Quiz Again</button>
+        <button type="button" class="btn" onclick="goToHome()">Instructions Menu</button>
+    </div>    
+</div>
+</div>
+
+
+<script src="/static/js/quiz-control.js"></script>
 {% endblock %}

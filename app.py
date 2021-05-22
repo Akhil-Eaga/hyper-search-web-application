@@ -1,11 +1,13 @@
 import os
-from flask import Flask, render_template, redirect, url_for, flash
+import sys
+from flask import Flask, render_template, redirect, url_for, flash, request,jsonify
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, RadioField
 from wtforms.validators import InputRequired, Email, Length
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+import json
 
 # base directory - the directory where "this" file resides in the host computer
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -25,28 +27,33 @@ login_manager.login_view = "admin_login"
 
 # User Database model
 class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True )
     username = db.Column(db.String(15), unique = True)
     email = db.Column(db.String(50), unique = True)
     password = db.Column(db.String(80))
-    quiz_answers = db.Column(db.String())
-    score = db.Column(db.Integer)
-    # isComplete = db.Column(db.String())
+    attempt = db.Column(db.Integer)
+    correct = db.Column(db.Integer)
+    wrong = db.Column(db.Integer)
+    score = db.Column(db.Float)
 
     def __init__(self, username, email, password):
         self.username = username
         self.email = email
         self.password = password
-        self.quiz_answers = ""
-        self.score = 0
+        self.attempt = 0
+        self.correct = 0
+        self.wrong = 0
+        self.score = 0.0
+        
         # self.isComplete = "Incomplete"
 
 # Admin Database model
 class Admin(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     username = db.Column(db.String(15), unique = True)
     email = db.Column(db.String(50), unique = True)
     password = db.Column(db.String(15))
+
 
     def __init__(self, username, email, password):
         self.username = username
@@ -56,15 +63,18 @@ class Admin(UserMixin, db.Model):
 @login_manager.user_loader
 def load_user(user_id):
     # this is used for user login but not for admin login
-    return User.query.get(int(user_id))
-
+    if User.query.get(int(user_id)):
+        return User.query.get(int(user_id))
+    else:
+        print("No user found, looking for admin..")
+        return Admin.query.get(int(user_id))
 # FORMS
 
 # login form used to create the login form fields and data validation
 class LoginForm(FlaskForm):
     username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15, message = "Username should be 4 to 15 characters long")])
     password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80, message = "Password should be atleast 8 characters long")])
-    remember = BooleanField("Remember me")
+    remember = BooleanField("Keep me signed in")
 
 # registration form to create the form fields and data validation
 class RegisterForm(FlaskForm):
@@ -72,38 +82,19 @@ class RegisterForm(FlaskForm):
     username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15, message = "Username should be 4 to 15 characters long")])
     password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80, message = "Password should be atleast 8 characters long")])
 
-# quiz question forms to create the form fields and data validation
-class QuizForm(FlaskForm):
-    # question labels
-    question1_label = "1. What character do you use to search for results that relate to social media platforms?"
-    question2_label = "2. How would you search the trend 'helloworld'?"
-    question3_label = "3. How would you search for 'jaguar' by excluding the word 'car' from the search results ?"
-    question4_label = "4. If you want to search for the exact phrase of 'agile methodology', what would your search criteria will look like?"
-    question5_label = "5. Let's say you want to search for all the content posted by Rihanna, specifically on youtube.com. How would you phrase your search ?"
-    question6_label = "6. Consider the situation where you want to know how popular Akhil Eaga is. So you decided to find all the sites on the web that link to Akhil's website akhileaga.com.au . How would you search for this ?"
-    question7_label = "7. Your friend Arjun is a Netflix fan. So he watched all the shows on netflix. Now that he had watched all the shows on netflix, he came to you for recommendations on sites that are similar to netflix.com. You being a serious student, don't know any of similar sites. However, you decided to help Arjun. How would you search for sites similar to netflix.com ?"
-    question8_label = "8. You ran into a situation where you want to search for all the pages that have either 'Microbiology' or 'Nanotechnology' in them. What special word do you use to join those two search terms ?"
-    question9_label = "9. What special phrase do you add at the end of your search criteria to look for 'docx' file type ?"
-    question10_label = "10. You went to your friend's house for a party and listened to song which you liked it very much. But after coming home you forgot the second word of the song. You only remember the first word 'supermarket'. How would you search for the song ?"
-
-    # question fields
-    question1 = StringField(question1_label)
-    question2 = StringField(question2_label)
-    question3 = StringField(question3_label)
-    question4 = StringField(question4_label)
-    question5 = StringField(question5_label)
-    question6 = StringField(question6_label)
-    question7 = StringField(question7_label)
-    question8 = StringField(question8_label)
-    question9 = StringField(question9_label)
-    question10 = StringField(question10_label)
-
 
 # admin login form used to create form fields for the admin login page
 class AdminLoginForm(FlaskForm):
     username = StringField("Admin name", validators=[InputRequired(), Length(min=4, max=15, message = "Admin name should be 4 to 15 characters long")])
     password = PasswordField("Admin password", validators=[InputRequired(), Length(min=8, max=80, message = "Admin Password should be atleast 8 characters long")])
-    remember = BooleanField("Remember me")
+    remember = BooleanField("Keep me signed in")
+
+
+# new admin addition form
+class AdminAdditionForm(FlaskForm):
+    username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15, message = "Admin name should be 4 to 15 characters long")])
+    email = StringField("Email", validators=[InputRequired("Please enter your email address"), Email("Invalid email address"), Length(max=50, message = "Max email address length is 50 characters")])
+    password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80, message = "Admin Password should be atleast 8 characters long")])
 
 ######################################################################
 ########################## ROUTES ####################################
@@ -120,18 +111,19 @@ def stats():
     # Number of users
     user_count = User.query.count()
     # Number of users who attempted the test
-    unattempted_user_count = User.query.filter(User.quiz_answers == "").filter_by(score = 0).count()
+    unattempted_user_count = User.query.filter(User.attempt == 0).count()
     # Number of users who completed the test is the sum of zero and non zero scorers
-    zero_score_users = User.query.filter(User.quiz_answers != "").filter_by(score = 0).count()
-    nonzero_score_users = User.query.filter(User.quiz_answers != "").filter(User.score != 0).count()
+    zero_score_users = User.query.filter(User.attempt != "").filter_by(score = 0).count()
+    nonzero_score_users = User.query.filter(User.attempt != "").filter(User.score != 0).count()
 
     return render_template('stats.html', page_title = "Stats", user_count = user_count, unattempted_user_count = unattempted_user_count, zero_score_users = zero_score_users, nonzero_score_users = nonzero_score_users)
+
+# --------------- LOGIN/LOGOUT ROUTES------------- #
 
 # login route to access login form
 @app.route('/login', methods=["GET", "POST"])
 def login():
     form = LoginForm()
-
     if form.validate_on_submit():
         user = User.query.filter_by(username = form.username.data).first()
         if user:
@@ -143,11 +135,59 @@ def login():
                 return redirect(url_for('login'))
         else:
             flash("Account doesn't exist. Please register before logging in.")
+            NonExistentUser = True
             return redirect(url_for('login'))
     else:
         if(len(list(form.errors.values())) > 0):
             flash(list(form.errors.values())[0][0])
     return render_template("login.html", page_title="Login", form=form)
+
+
+# logout route - can be accessed by only logged in users and logs the user out when accessed
+@app.route('/logout')
+@login_required
+def logout():
+    # ---------------- before logging out the user save the quiz data into the database ------------------
+    logout_user()
+    flash("You are logged out")
+    return redirect(url_for('index'))
+
+# signup route to access the signup page
+@app.route('/signup', methods=["GET", "POST"])
+def signup():
+    form = RegisterForm()
+
+    if form.validate_on_submit():
+        usernamecheck = User.query.filter_by(username = form.username.data).first()
+        useremailcheck = User.query.filter_by(email=form.email.data).first()
+        if not useremailcheck and not usernamecheck:
+            # sha256 method generates a password that is 80 characters long
+            # this is the reason why the password field was made 80 characters long
+            hashed_password = generate_password_hash(form.password.data, method = "sha256")
+            new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+            db.session.add(new_user)
+            db.session.commit()
+        else:
+            flash("User account already exists")
+            return redirect(url_for('signup'))
+        
+        # flashing the success message to the user
+        flash("Your account is successfully created ! Please Login to continue.")
+        return redirect(url_for('signup'))
+    else:
+        if(len(list(form.errors.values())) > 0):
+            flash(list(form.errors.values())[0][0])
+
+    return render_template("signup.html", page_title="Signup", form=form)
+
+
+# dashboard route - can be accessed only after logging in
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template("dashboard.html", page_title = "Dashboard", name = current_user.username.lower().capitalize())
+
+# ------------- ADMIN ROUTING ----------------#
 
 # admin login route
 @app.route('/admin_login', methods=['GET', 'POST'])
@@ -174,58 +214,74 @@ def admin_login():
             flash(list(form.errors.values())[0][0])
     return render_template("admin_login.html", page_title="Admin Login", form=form)
 
-# signup route to access the signup page
-@app.route('/signup', methods=["GET", "POST"])
-def signup():
-    form = RegisterForm()
+
+
+
+# admin_dashboard route - can be accessed only after loggin in with admin creds
+@app.route("/admin_dashboard", methods = ['GET', 'POST'])
+@login_required
+def admin_dashboard():
+    form = AdminAdditionForm()
 
     if form.validate_on_submit():
-        usernamecheck = User.query.filter_by(username = form.username.data).first()
-        useremailcheck = User.query.filter_by(email=form.email.data).first()
-        if not useremailcheck and not usernamecheck:
-            # sha256 method generates a password that is 80 characters long
-            # this is the reason why the password field was made 80 characters long
+        adminUsernameCheck = Admin.query.filter_by(username = form.username.data).first()
+        adminEmailCheck = Admin.query.filter_by(email = form.email.data).first()
+        if not adminUsernameCheck and not adminEmailCheck:
             hashed_password = generate_password_hash(form.password.data, method = "sha256")
-            new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
-            db.session.add(new_user)
+            new_admin = Admin(username=form.username.data, email=form.email.data, password=hashed_password)
+            db.session.add(new_admin)
             db.session.commit()
+            flash("New admin has been added to the database")
+            # return redirect(url_for('admin_dashboard'))
         else:
-            flash("User account already exists")
-            return redirect(url_for('signup'))
-        
-        # flashing the success message to the user
-        flash("Your account is successfully created !")
-        return redirect(url_for('signup'))
+            flash("Not a unique admin name or admin email")
+            # return redirect(url_for('admin_dashboard')) 
     else:
         if(len(list(form.errors.values())) > 0):
             flash(list(form.errors.values())[0][0])
+            # return redirect(url_for('admin_dashboard'))
 
-    return render_template("signup.html", page_title="Signup", form=form)
-
-# dashboard route - can be accessed only after logging in
-@app.route('/dashboard')
-@login_required
-def dashboard():
-    return render_template("dashboard.html", page_title = "Dashboard", name = current_user.username.lower().capitalize())
-
-# admin_dashboard route - can be accessed only after loggin in with admin creds
-@app.route("/admin_dashboard")
-@login_required
-def admin_dashboard():
+    # passing user info
+    data = User.query.all()
+    userlist = []
+    
+    for users in data:
+        userlist.append([users.username, users.email, users.attempt, users.score])
     # query the user database and show the user database in the dashboard
     # create a form to add more admins or delete the admins
     # show some stats
-    return render_template("admin_dashboard.html", page_title = "Admin Dashboard")
+    return render_template("admin_dashboard.html", page_title = "Admin Dashboard", userlist=userlist, form = form)
 
-# logout route - can be accessed by only logged in users and logs the user out when accessed
-@app.route('/logout')
+
+@app.route("/admin_delete_user", methods = ['GET', 'POST'])
 @login_required
-def logout():
-    # ---------------- before logging out the user save the quiz data into the database ------------------
-    logout_user()
-    flash("You are logged out")
-    return redirect(url_for('index'))
+def admin_delete_user():
+    if request.method == 'POST':
+        print("printing username")
+        del_username = list(request.form.keys())[0]
+        print(del_username)
+        print("deleting " + del_username)
+        selectedUser = User.query.filter_by(username = del_username).first()
+        db.session.delete(selectedUser)
+        db.session.commit()
+        print("redirecting")
+    return redirect(url_for('admin_dashboard'))
 
+
+@app.route("/admin_delete_database", methods = ['GET', 'POST'])
+@login_required
+def admin_delete_database():
+    if request.method == 'POST':
+        if  list(request.form.keys())[0] == 'delete-db':
+            userdata = User.query.all()
+            for eachUser in userdata:
+                db.session.delete(eachUser)
+        db.session.commit()
+    return redirect(url_for('admin_dashboard'))
+
+
+
+# ROUTING FOR ADMIN HTML
 @app.route('/admin_logout')
 @login_required
 def admin_logout():
@@ -233,74 +289,42 @@ def admin_logout():
     flash("Admin is logged out")
     return redirect(url_for('index'))
 
+
+# ROUTING FOR EXERCISE HTML
 @app.route("/exercises")
 @login_required
 def exercises():
     return render_template("exercises.html", page_title = "Exercises", name = current_user.username.lower().capitalize())
 
+
+# ROUTING FOR QUIZ HTML
 @app.route('/quiz', methods=["GET", "POST"])
 @login_required
 def quiz():
-    form = QuizForm()
-    
-    # initiating the value to max unanswered count
-    unanswered_count = 10
-    if form.validate_on_submit():
-        answers = [form.question1.data, form.question2.data, form.question3.data, form.question4.data, form.question5.data, form.question6.data, form.question7.data, form.question8.data, form.question9.data, form.question10.data]
-
-        answers = "__sep__".join(answers)
-        user = User.query.get(current_user.id)
-        user.quiz_answers = answers
+    user = User.query.get(current_user.id)
+    if request.method =="POST":        
+        print("Saving Results to DB")
+        for key in request.form.keys():
+            data = key
+        results = json.loads(data)['output']
+        user.attempt += 1
+        user.correct = results[2]
+        user.wrong = results[3]
+        user.score = round(user.correct/results[0],2)
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('feedback'))
+        resp_dic={'msg':"Results Saved."}
+        resp = jsonify(resp_dic)      
+        return resp        
     else:
-        if(len(list(form.errors.values())) > 0):
-            flash(list(form.errors.values())[0][0])
-    
-    return render_template("quiz.html", form = form, page_title = "Quiz", name = current_user.username.lower().capitalize(), quiz_answers = current_user.quiz_answers.split("__sep__"), unanswered_count = unanswered_count)
 
-@app.route('/feedback')
-@login_required
-def feedback():
-    # question labels
-    question1_label = "1. What character do you use to search for results that relate to social media platforms?"
-    question2_label = "2. How would you search the trend 'helloworld'?"
-    question3_label = "3. How would you search for 'jaguar' by excluding the word 'car' from the search results ?"
-    question4_label = "4. If you want to search for the exact phrase of 'agile methodology', what would your search criteria will look like?"
-    question5_label = "5. Let's say you want to search for all the content posted by Rihanna, specifically on youtube.com. How would you phrase your search ?"
-    question6_label = "6. Consider the situation where you want to know how popular Akhil Eaga is. So you decided to find all the sites on the web that link to Akhil's website akhileaga.com.au . How would you search for this ?"
-    question7_label = "7. Your friend Arjun is a Netflix fan. So he watched all the shows on netflix. Now that he had watched all the shows on netflix, he came to you for recommendations on sites that are similar to netflix.com. You being a serious student, don't know any of similar sites. However, you decided to help Arjun. How would you search for sites similar to netflix.com ?"
-    question8_label = "8. You ran into a situation where you want to search for all the pages that have either 'Microbiology' or 'Nanotechnology' in them. What special word do you use to join those two search terms ?"
-    question9_label = "9. What special phrase do you add at the end of your search criteria to look for 'docx' file type ?"
-    question10_label = "10. You went to your friend's house for a party and listened to song which you liked it very much. But after coming home you forgot the second word of the song. You only remember the first word 'supermarket'. How would you search for the song ?"
+        return render_template("quiz.html",name = current_user.username.lower().capitalize(),page_title = "Quiz", TotalAttempt= user.attempt, pWrong = user.wrong , pCorrect= user.correct, pScore = user.score)
 
-    question_labels = [question1_label, question2_label, question3_label, question4_label, question5_label, question6_label, question7_label, question8_label, question9_label, question10_label]
 
-    my_user = User.query.get(current_user.id)
-    user_answers = my_user.quiz_answers
-    user_answers = user_answers.lower().split("__sep__")
-    actual_answers = ["@", "#helloworld", "jaguar -car", '"agile methodology"', "rihanna site:youtube.com", "link:akhileaga.com.au", "related:netflix.com", "or", "filetype:docx", "supermarket *"]
-
-    score = 0
-    boolean_score = []
-    for index in range(len(user_answers)):
-        if user_answers[index] == actual_answers[index]:
-            score = score + 1
-            boolean_score.append("Correct")
-        else:
-            boolean_score.append("Wrong")
-
-    my_user.score = score
-    db.session.add(my_user)
-    db.session.commit()
-
-    return render_template("feedback.html", page_title = "Feedback", name = current_user.username.lower().capitalize(), user_answers = user_answers, actual_answers = actual_answers, score = score, boolean_score = boolean_score, question_labels = question_labels)
 
 @app.route('/<page_name>')
 def error(page_name):
     return render_template("error.html", page_title = "Error",  page_name = page_name)
-
 
 ###########################
 # running the app.py script

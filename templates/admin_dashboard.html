@@ -5,15 +5,117 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename ='css/admin_dashboardpage.css')}}">
 {% endblock %}
 
+{% block scripts %}
+{% endblock %}
+
+
 {% block content %}
-<div class="container">
-    <h1>Welcome to admin dashboard</h1>
+
+<!-- Flash messages -->
+{% for each_message in get_flashed_messages() %}
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+    {{ each_message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
+{% endfor %}
 
 <!-- Create a form to add more admins -->
 
 <!-- Create a table to add and delete users -->
 
 <!-- Create a table to see some stats -->
+
+<div class="container">
+    <h1>Welcome to admin dashboard</h1>
+    
+    <div class="five-column-container">
+
+        <!-- Add Admin -->
+        <div class="each-column">
+            <div class="column-content-heading">
+                <p>Add admin</p>
+            </div>
+            <div class="column-content">
+                
+                <form action="/admin_dashboard" method="POST" class="form-signin add-admin hide">
+                    <div>
+                        <!-- <h1 class="form-signin-heading">Add Admin</h1> -->
+                        {{ form.hidden_tag() }}
+                    </div>
+                    <div>
+                        {{ render_field(form.username, class='form-control', placeholder='Enter New Admin Username') }}
+                    </div>
+                    <div>
+                        {{ render_field(form.email, class='form-control', placeholder='Enter New Admin Email') }}
+                    </div>
+                    <div>
+                        {{ render_field(form.password, class='form-control', placeholder='Enter New Admin Password') }}
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-lg btn-primary ">Add admin</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- Reset Stats -->
+        <div class="each-column info-reset-container">
+            <div class="reset-all-container row-container">
+                <div class="column-content-heading">
+                    <p>Reset Stats</p>
+                </div>
+                <div class="column-content">
+                    <button id = "delete-db" class ="btn btn-lg btn-danger" onclick = "sendDeleteDatabaseRequest(event)">Delete Database</button>
+                </div>
+            </div>
+            
+            <div class="user-info-fetch-container row-container">
+                <div class="column-content-heading">
+                    <p>User Info</p>
+                </div>
+                <div class="column-content">
+                    <button class="btn btn-lg btn-primary" onclick ="userinfoReveal()">Fetch</button>                
+                </div>
+            </div>
+        </div>
+        
+    <!-- end of five column container -->
+    </div> 
+
+    <div class="user-info custom-box hide">
+        <h1> User Information List</h1>
+        <div class="table-container">
+            <table class="table">
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Total attempts</th>
+                    <th>Score</th>
+                    <th>Action</th>
+                </tr>
+        
+                {% for each_user in range(userlist | length) %}
+                <tr id = "{{ 'id' + (each_user|string) }}">
+                    <td class="username">{{userlist[each_user][0]}}</td>
+                    <td class="email">{{userlist[each_user][1]}}</td>
+                    <td class="attempts">{{userlist[each_user][2]}}</td>
+                    <td class="score">{{userlist[each_user][3]}}</td>
+                    <td class="delete-button-container"><button id = "{{each_user}}" class ="delete-user-btn" onclick = "sendDeleteRequest(event)">Delete this user</button></td>
+                </tr>
+                {% endfor %}
+            </table>  
+        </div> 
+        <div class="close-button-container">
+            <button type="button" class="btn btn-lg btn-primary" onclick="userinfoHide()">Close</button>
+        </div>
+        
+    </div>
+    <div class="empty-div"></div>
+</div>
+
+<script src="/static/js/admin-dashboard.js"></script>
 
 {% endblock %}
