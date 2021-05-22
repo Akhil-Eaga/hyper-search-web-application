@@ -1,3 +1,47 @@
+commit 206e09d88a08fd364299b1edd3c59a666249a030
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Sun May 23 01:45:26 2021 +0800
+
+    Minor styling and text corrections
+
+commit e4a6e87ee17d872113508158dbfa05cf5691672f
+Author: arjun_panicker <panicker.arjun21@gmail.com>
+Date:   Sat May 22 22:25:33 2021 +0800
+
+    added WTF Form Render Template
+
+commit 1d4e9538544ec7f02d31515bc720a187a35f02c6
+Author: arjun_panicker <panicker.arjun21@gmail.com>
+Date:   Sat May 22 22:24:15 2021 +0800
+
+    Merged code from HyperSearch Repo to Final Project
+    
+    Major changes have been implemented to the final project.
+    
+    1. Template/HTMLS updated.
+    2. Main APP updated.
+    3. Test functionality added.
+
+commit 6d4ef67b252465f5909265ad9ee9f7178847b190
+Author: arjun_panicker <panicker.arjun21@gmail.com>
+Date:   Sat May 22 22:16:27 2021 +0800
+
+    Added updated CSS and JavaScript to main repo
+
+commit d542f2f9f1924242c8b8a6812222aa358d8e5b0a
+Author: arjun_panicker <panicker.arjun21@gmail.com>
+Date:   Sat May 22 22:15:44 2021 +0800
+
+    Add Selenium Tests from Personal Repo
+    
+    Add Selenium Tests from HyperSearch Repo to main project.
+
+commit 8d373224d717e157b2327a75ba2a7463cb35bc65
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Sat May 22 19:20:09 2021 +0800
+
+    created and updated the gitlog
+
 commit a7d2906eeb78ca659f7a34b1522c599baa222e40
 Author: Akhil-Eaga <44122493+Akhil-Eaga@users.noreply.github.com>
 Date:   Sat May 22 19:12:12 2021 +0800
