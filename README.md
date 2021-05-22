@@ -47,6 +47,7 @@ The HTML files are kept in a folder named "templates" with each page named after
 - User Assessments
 - Feedback on the assessment taken
 - Ability to view the result of the latest test
+- Access to some anonymised statistics to encourage viewer to subscriber conversion.
 
 
 # Testing:
