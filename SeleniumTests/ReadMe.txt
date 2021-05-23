@@ -1,1 +1,0 @@
-Upon testing the selenium_test.py on Linux and Windows 10. Depending on scaling and wait period for response, there is an error generated which is not seen when the same tests are run via IDE on ChromeBrowser.
