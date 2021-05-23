@@ -31,3 +31,14 @@ body {
     margin-top: 15% ;
     margin-bottom: 5%;
 }
+
+.btn.btn-lg.btn-primary{
+    border: none;
+    background-color: #4285f4;
+    color:white ;
+    border-radius: 30px;
+  }
+  
+.btn.btn-lg.btn-primary:hover{ 
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.085);
+  }

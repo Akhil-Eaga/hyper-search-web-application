@@ -23,9 +23,19 @@
 <div class="container">
     
 <div class="instruction-box custom-box">
-    <h3>Instruction:</h3>
+    <h3>Instructions</h3>
     <br>
-    <p>Total number of questions: <span class="total-question"></span></p>
+    <p><ul>
+        <li>Total number of questions: <strong><span class="total-question"></span></strong></li>
+        <li>Multiple choice quiz with no time limit.</li>
+        <li>The only way to save the quiz is to finish it.</li>
+        <li>Once you skip or click on next question you can't go back.</li>
+        <li>You will be presented with 3 options for each question.</li>
+        <li>You will be provided with a test search box below to try out each options to see the results.</li>
+        <li>Simply click on the answer you think is correct and you will immediately get a feedback on it.</li>
+        <li>The progress bar at the bottom of the page keeps track of your attemped questions.</li>
+        <li>Click Start Quiz whenever you are ready. Good luck!</li>
+    </ul></p>
     
     <div class="button-container">
         <button type="button" class="btn" onclick="startQuiz()">Start Quiz</button>
@@ -88,14 +98,14 @@
 </div>
 
 <div class="prev-result-box custom-box hide">
-    <h1>Previous Quiz Result</h1>
+    <h1>Most Recent Quiz Result</h1>
     <table>
        <tr>
            <td>Total Question</td>
            <td><span class="total-question"></span></td>
        </tr>
        <tr>
-           <td>Attempt No</td>
+           <td>Quiz Attempt No</td>
            <td><span class="total-attempt"></span></td>
        </tr>
        <tr>

@@ -8,7 +8,7 @@ from flask_testing import TestCase
 
 class TestApp(unittest.TestCase):
     def setUp(self):
-        app.config["SECRET_KEY"] = "mysecretkey"
+        app.config["SECRET_KEY"] = "jkshdfkafkanvjjgbajlgbsldfgjlfngbjhlsbfgjsbgjlsbdfgjklsbdfgjklsjklgjkl"
         app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "test.db")
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
         self.app = app.test_client(self)
