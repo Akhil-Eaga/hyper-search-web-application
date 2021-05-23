@@ -1,3 +1,69 @@
+commit be92055c09429f0cfaae85156b2e79727c3f27dd
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Mon May 24 00:56:55 2021 +0800
+
+    Minor grammar corrections in description file
+
+commit d548103067b6cff8678e627a757e5cf7d37730c6
+Author: arjun_panicker <panicker.arjun21@gmail.com>
+Date:   Sun May 23 23:38:39 2021 +0800
+
+    Final Changes.
+
+commit 4849ec469b120d567cbbf6c016308bb494c05b4b
+Author: arjun_panicker <panicker.arjun21@gmail.com>
+Date:   Sun May 23 23:33:10 2021 +0800
+
+    Added Selenium.py issue in a readme file
+
+commit a4a1598616f4b185c7b38ac90e8730920eb687c4
+Author: arjun_panicker <panicker.arjun21@gmail.com>
+Date:   Sun May 23 23:31:35 2021 +0800
+
+    Updated Selenium PY to reflect works with windows 10
+
+commit ea748d538d8cfda45867c5138d489d78bf735d01
+Author: arjunpanicker <panicker.arjun12@gmail.com>
+Date:   Sun May 23 23:16:33 2021 +0800
+
+    Selenium Test Updated
+
+commit 852aa6585b096f53a1ac19c14e29d80287f760ce
+Author: arjun_panicker <panicker.arjun21@gmail.com>
+Date:   Sun May 23 21:49:52 2021 +0800
+
+    Final change to Selenium Test
+
+commit 52534610037c8fac683c93bef60cd5e142c7de57
+Author: arjun_panicker <panicker.arjun21@gmail.com>
+Date:   Sun May 23 21:44:28 2021 +0800
+
+    Updated Selenium Test and add code comments.
+
+commit ffada0d0184fcba9903ac662ac540bf23ed49e55
+Author: arjun_panicker <panicker.arjun21@gmail.com>
+Date:   Sun May 23 20:39:09 2021 +0800
+
+    Fixed Quiz Option Menu
+
+commit 33ebfbcfaacf576e82e802a3b3c527f02fe09544
+Author: arjun_panicker <panicker.arjun21@gmail.com>
+Date:   Sun May 23 19:45:50 2021 +0800
+
+    HTML Changes
+    
+    1. Added a "Get Started Button on home page".
+    2. Grammar and punctuation correction on the Exercises and Quiz table.
+    3. Update Error Page.
+    4. Updated Dashboard.
+    5. Update Home Page CSS
+
+commit 7e34075d723309811a7dbba8ee4a8d04495e9b2e
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Sun May 23 01:49:04 2021 +0800
+
+    added requirements file
+
 commit 206e09d88a08fd364299b1edd3c59a666249a030
 Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
 Date:   Sun May 23 01:45:26 2021 +0800
