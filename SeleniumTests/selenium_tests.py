@@ -170,7 +170,7 @@ class TestApp():
     self.driver.find_element(By.CSS_SELECTOR, ".carousel-indicators > li:nth-child(2)").click()
     self.driver.find_element(By.CSS_SELECTOR, ".carousel-indicators > li:nth-child(1)").click()
     self.driver.find_element(By.NAME, "q").click()
-    self.driver.find_element(By.NAME, "q").send_keys("baby-yoda-happy")
+    self.driver.find_element(By.NAME, "q").send_keys()
     self.vars["window_handles"] = self.driver.window_handles
     self.driver.find_element(By.CSS_SELECTOR, ".intro-slide .gSearch-btn").click()
     self.vars["win2827"] = self.wait_for_window(2000)
