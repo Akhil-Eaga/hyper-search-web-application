@@ -166,6 +166,7 @@ function getResult(element){
     }
   attempt++;
   unclickableOptions();
+  enableNextBtn();
 }
 
 // make all the options unclickable once the user select a option (RESTRICT THE USER TO CHANGE THE OPTION AGAIN)
@@ -194,8 +195,17 @@ function next(){
        quizOver();
   }
   else{
+      disableNextBtn();
       getNewQuestion();
+      
   }
+}
+function disableNextBtn(){
+   document.getElementById("next-btn").style.display = "none";
+}
+
+function enableNextBtn(){
+   document.getElementById("next-btn").style.display = "block";
 }
 
 function quizOver(){
@@ -263,6 +273,7 @@ function startQuiz(){
    // first we will set all questions in availableQuestions Array
    setAvailableQuestions();
    // second we will call getNewQuestion(); function
+   disableNextBtn();
    getNewQuestion();
    // to create indicator of answers
    answersIndicator();

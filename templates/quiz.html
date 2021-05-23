@@ -27,13 +27,13 @@
     <br>
     <p><ul>
         <li>Total number of questions: <strong><span class="total-question"></span></strong></li>
-        <li>Multiple choice quiz with no time limit.</li>
+        <li>Multiple choice quiz with no time limit. All questions are must.</li>
         <li>The only way to save the quiz is to finish it.</li>
-        <li>Once you skip or click on next question you can't go back.</li>
         <li>You will be presented with 3 options for each question.</li>
         <li>You will be provided with a test search box below to try out each options to see the results.</li>
         <li>Simply click on the answer you think is correct and you will immediately get a feedback on it.</li>
-        <li>The progress bar at the bottom of the page keeps track of your attemped questions.</li>
+        <li>A next question button will take you to the next question.</li>
+        <li>The progress bar at the bottom of the page keeps track of your progress.</li>
         <li>Click Start Quiz whenever you are ready. Good luck!</li>
     </ul></p>
     
@@ -54,7 +54,7 @@
     <div class="option-container"></div>
     
     <div class="next-question-btn">
-       <button type="button" class="btn" onclick="next()">Next</button>
+       <button id="next-btn" type="button" class="btn" onclick="next()">Next</button>
        <form class="gSearch" action="https://www.google.com/search" target="_blank">
             <input class="gSearch-text" type="text" name="q" placeholder="Attempt your answer here! Press Enter to Search..">
         </form>

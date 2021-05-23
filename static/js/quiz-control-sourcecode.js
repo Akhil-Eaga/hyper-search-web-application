@@ -1,5 +1,5 @@
-
- //Arjun Panicker
+// Created by Arjun Panicker following WebShala Tutorial.
+// The Webshala, 2020, thewebshala(YouTube.com)
 
 
 // quiz questions
@@ -128,8 +128,8 @@ function getNewQuestion(){
       optionContainer.appendChild(option);
       option.setAttribute("onclick","getResult(this)");
    }
-  console.log(availableQuestions)
-  console.log(availableOptions)
+   console.log(availableQuestions)
+   console.log(availableOptions)
    questionCounter++;
 }
 
@@ -179,6 +179,7 @@ function answersIndicator(){
         answersIndicatorContainer.appendChild(indicator);
      }
 }
+
 function updateAnswerIndicator(markType){
     answersIndicatorContainer.children[questionCounter-1].classList.add(markType);
 }
@@ -249,11 +250,11 @@ function goToDashboard(){
 
 function startQuiz(){
    
-    // hide home box 
-    instructionBox.classList.add("hide");
-    prevResultBox.classList.add("hide")
-    // show quiz Box
-    questionsBox.classList.remove("hide");
+   // hide home box 
+   instructionBox.classList.add("hide");
+   prevResultBox.classList.add("hide")
+   // show quiz Box
+   questionsBox.classList.remove("hide");
    // first we will set all questions in availableQuestions Array
    setAvailableQuestions();
    // second we will call getNewQuestion(); function
@@ -279,20 +280,18 @@ function updateResults(){
 }
         
 function saveResults(){
-        var appdir='/quiz';
-        var send_msg = "Sending save request";
-        var received_msg = "Results saved.";
-        console.log(send_msg);
-        $.ajax({
-             type: "POST",
-             url:server+appdir,
-             data: JSON.stringify(results),
-             dataType: 'json'
-        }).done(function(data) { 
-           console.log(data);
-           console.log(received_msg);
-        });
-     }
+   console.log("Sending save request");
+   $.ajax({
+         type: "POST",
+         url:"http://127.0.0.1:5000/quiz",
+         data: JSON.stringify(results),
+         dataType: 'json'
+   }).done(function(data){ 
+      console.log(data)
+      console.log("Results Saved.");
+      
+   });
+}
 
 function pastQuiz(){
 
@@ -306,7 +305,6 @@ function pastQuiz(){
   }
   else {
      
-     alert("You have attemped the quiz!")
      instructionBox.classList.add("hide")
      prevResultBox.classList.remove("hide") 
      prevResultBox.querySelector(".total-question").innerHTML = questionLimit;     
