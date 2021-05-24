@@ -117,8 +117,8 @@ def stats():
     # Number of users who attempted the test
     unattempted_user_count = User.query.filter(User.attempt == 0).count()
     # Number of users who completed the test is the sum of zero and non zero scorers
-    zero_score_users = User.query.filter(User.attempt != "").filter_by(score = 0).count()
-    nonzero_score_users = User.query.filter(User.attempt != "").filter(User.score != 0).count()
+    zero_score_users = User.query.filter(User.attempt != 0).filter_by(score = 0).count()
+    nonzero_score_users = User.query.filter(User.attempt != 0).filter(User.score != 0).count()
 
     return render_template('stats.html', page_title = "Stats", user_count = user_count, unattempted_user_count = unattempted_user_count, zero_score_users = zero_score_users, nonzero_score_users = nonzero_score_users)
 
