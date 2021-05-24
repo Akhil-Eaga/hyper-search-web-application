@@ -1,3 +1,15 @@
+commit e7352b04e1b75d5574ca11241c9e91f21c325ba5
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Mon May 24 15:18:27 2021 +0800
+
+    visual indicators for keywords
+
+commit f87ccbf2d08f7df5bdf7d7cc5f77c410a3656d8a
+Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
+Date:   Mon May 24 00:58:11 2021 +0800
+
+    final version of git log and requirements text files
+
 commit be92055c09429f0cfaae85156b2e79727c3f27dd
 Author: Akhil-Eaga <akhil.bitsian2013@gmail.com>
 Date:   Mon May 24 00:56:55 2021 +0800
