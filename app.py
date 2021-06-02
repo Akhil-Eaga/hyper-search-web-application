@@ -107,6 +107,8 @@ class AdminAdditionForm(FlaskForm):
 # index route or home page route
 @app.route('/')
 def index():
+    if current_user.is_authenticated:
+        return redirect(url_for("dashboard"))
     return render_template("index.html", page_title="Home Page")
 
 # route to the stats page
