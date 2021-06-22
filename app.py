@@ -1,7 +1,7 @@
 # importing necessary python and flask libraries
 import os
 import sys
-from flask import Flask, render_template, redirect, url_for, flash, request,jsonify
+from flask import Flask, render_template, redirect, url_for, flash, request, jsonify
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, RadioField
 from wtforms.validators import InputRequired, Email, Length
@@ -106,6 +106,7 @@ class AdminAdditionForm(FlaskForm):
 
 # index route or home page route
 @app.route('/')
+@app.route('/index')
 def index():
     if current_user.is_authenticated:
         return redirect(url_for("dashboard"))
@@ -336,4 +337,4 @@ def error(page_name):
 ###########################
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
