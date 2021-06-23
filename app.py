@@ -16,7 +16,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 # app initialization and configuration settings
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "jkshdfkafkanvjjgbajlgbsldfgjlfngbjhlsbfgjsbgjlsbdfgjklsbdfgjklsjklgjkl"
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://jeurroumqgbtzc:e094f56f174ee295a00c023921fea1539d4a74345aba0ec092766c55431b2c2f@ec2-35-169-188-58.compute-1.amazonaws.com:5432/d75qr33igd65fn"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # database initialization, connection and the login manager configuration
