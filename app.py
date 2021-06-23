@@ -33,7 +33,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True )
     username = db.Column(db.String(15), unique = True)
     email = db.Column(db.String(50), unique = True)
-    password = db.Column(db.String(80))
+    password = db.Column(db.String(90))
     attempt = db.Column(db.Integer)
     correct = db.Column(db.Integer)
     wrong = db.Column(db.Integer)
@@ -77,20 +77,20 @@ def load_user(user_id):
 # login form used to create the login form fields and data validation
 class LoginForm(FlaskForm):
     username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15, message = "Username should be 4 to 15 characters long")])
-    password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80, message = "Password should be atleast 8 characters long")])
+    password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=90, message = "Password should be atleast 8 characters long")])
     remember = BooleanField("Keep me signed in")
 
 # registration form to create the form fields and data validation
 class RegisterForm(FlaskForm):
     email = StringField("Email", validators=[InputRequired("Please enter your email address"), Email("Invalid email address"), Length(max=50, message = "Max email address length is 50 characters")])
     username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15, message = "Username should be 4 to 15 characters long")])
-    password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80, message = "Password should be atleast 8 characters long")])
+    password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=90, message = "Password should be atleast 8 characters long")])
 
 
 # admin login form used to create form fields for the admin login page
 class AdminLoginForm(FlaskForm):
     username = StringField("Admin name", validators=[InputRequired(), Length(min=4, max=15, message = "Admin name should be 4 to 15 characters long")])
-    password = PasswordField("Admin password", validators=[InputRequired(), Length(min=8, max=80, message = "Admin Password should be atleast 8 characters long")])
+    password = PasswordField("Admin password", validators=[InputRequired(), Length(min=8, max=90, message = "Admin Password should be atleast 8 characters long")])
     remember = BooleanField("Keep me signed in")
 
 
@@ -98,7 +98,7 @@ class AdminLoginForm(FlaskForm):
 class AdminAdditionForm(FlaskForm):
     username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15, message = "Admin name should be 4 to 15 characters long")])
     email = StringField("Email", validators=[InputRequired("Please enter your email address"), Email("Invalid email address"), Length(max=50, message = "Max email address length is 50 characters")])
-    password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=80, message = "Admin Password should be atleast 8 characters long")])
+    password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=90, message = "Admin Password should be atleast 8 characters long")])
 
 ###########################################################################################
 ##########################              ROUTES         ####################################
@@ -170,8 +170,8 @@ def signup():
         usernamecheck = User.query.filter_by(username = form.username.data).first()
         useremailcheck = User.query.filter_by(email=form.email.data).first()
         if not useremailcheck and not usernamecheck:
-            # sha256 method generates a password that is 80 characters long
-            # this is the reason why the password field was made 80 characters long
+            # sha256 method generates a password that is 80 characters long but is adding some extra characters when hosted on heroku
+            # this is the reason why the password field was made 90 (80 +10 chars for better hosting on heroku) characters long
             hashed_password = generate_password_hash(form.password.data, method = "sha256")
             new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
             db.session.add(new_user)
