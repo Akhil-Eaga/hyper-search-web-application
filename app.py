@@ -30,7 +30,7 @@ login_manager.login_view = "admin_login"
 
 # User Database model
 class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True )
+    # id = db.Column(db.Integer, primary_key=True, autoincrement=True )
     username = db.Column(db.String(50), unique = True)
     email = db.Column(db.String(50), unique = True)
     password = db.Column(db.String(90))
@@ -50,7 +50,7 @@ class User(UserMixin, db.Model):
 
 # Admin Database model
 class Admin(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
+    # id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     username = db.Column(db.String(50), unique = True)
     email = db.Column(db.String(50), unique = True)
     password = db.Column(db.String(90))
