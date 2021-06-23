@@ -53,7 +53,7 @@ class Admin(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     username = db.Column(db.String(15), unique = True)
     email = db.Column(db.String(50), unique = True)
-    password = db.Column(db.String(15))
+    password = db.Column(db.String(90))
 
     def __init__(self, username, email, password):
         self.username = username
