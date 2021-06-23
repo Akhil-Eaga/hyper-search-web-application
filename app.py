@@ -31,7 +31,7 @@ login_manager.login_view = "admin_login"
 # User Database model
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True )
-    username = db.Column(db.String(15), unique = True)
+    username = db.Column(db.String(50), unique = True)
     email = db.Column(db.String(50), unique = True)
     password = db.Column(db.String(90))
     attempt = db.Column(db.Integer)
@@ -51,7 +51,7 @@ class User(UserMixin, db.Model):
 # Admin Database model
 class Admin(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement=True)
-    username = db.Column(db.String(15), unique = True)
+    username = db.Column(db.String(50), unique = True)
     email = db.Column(db.String(50), unique = True)
     password = db.Column(db.String(90))
 
@@ -76,27 +76,27 @@ def load_user(user_id):
 
 # login form used to create the login form fields and data validation
 class LoginForm(FlaskForm):
-    username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15, message = "Username should be 4 to 15 characters long")])
+    username = StringField("Username", validators=[InputRequired(), Length(min=4, max=50, message = "Username should be 4 to 50 characters long")])
     password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=90, message = "Password should be atleast 8 characters long")])
     remember = BooleanField("Keep me signed in")
 
 # registration form to create the form fields and data validation
 class RegisterForm(FlaskForm):
     email = StringField("Email", validators=[InputRequired("Please enter your email address"), Email("Invalid email address"), Length(max=50, message = "Max email address length is 50 characters")])
-    username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15, message = "Username should be 4 to 15 characters long")])
+    username = StringField("Username", validators=[InputRequired(), Length(min=4, max=50, message = "Username should be 4 to 50 characters long")])
     password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=90, message = "Password should be atleast 8 characters long")])
 
 
 # admin login form used to create form fields for the admin login page
 class AdminLoginForm(FlaskForm):
-    username = StringField("Admin name", validators=[InputRequired(), Length(min=4, max=15, message = "Admin name should be 4 to 15 characters long")])
+    username = StringField("Admin name", validators=[InputRequired(), Length(min=4, max=50, message = "Admin name should be 4 to 50 characters long")])
     password = PasswordField("Admin password", validators=[InputRequired(), Length(min=8, max=90, message = "Admin Password should be atleast 8 characters long")])
     remember = BooleanField("Keep me signed in")
 
 
 # new admin addition form
 class AdminAdditionForm(FlaskForm):
-    username = StringField("Username", validators=[InputRequired(), Length(min=4, max=15, message = "Admin name should be 4 to 15 characters long")])
+    username = StringField("Username", validators=[InputRequired(), Length(min=4, max=50, message = "Admin name should be 4 to 50 characters long")])
     email = StringField("Email", validators=[InputRequired("Please enter your email address"), Email("Invalid email address"), Length(max=50, message = "Max email address length is 50 characters")])
     password = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=90, message = "Admin Password should be atleast 8 characters long")])
 
