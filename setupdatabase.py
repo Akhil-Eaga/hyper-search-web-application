@@ -10,6 +10,6 @@ db.create_all()
 
 
 # below code creates a default admin to access all admin level features
-admin1 = Admin(username = "admin", email = "admin@admin.com", password = generate_password_hash("password"))
+admin1 = Admin(username = "admin", email = "admin@admin.com", password = generate_password_hash("password", method = "sha256"))
 db.session.add(admin1)
 db.session.commit()
