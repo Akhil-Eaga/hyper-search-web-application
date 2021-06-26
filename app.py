@@ -10,19 +10,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import json
 
-# base directory - the directory where "this" file resides in the host computer
-basedir = os.path.abspath(os.path.dirname(__file__))
 
 # app initialization and configuration settings
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "jkshdfkafkanvjjgbajlgbsldfgjlfngbjhlsbfgjsbgjlsbdfgjklsbdfgjklsjklgjkl"
 
-
-
 # change the ENV to anything other than "dev" to deploy the app in production setup
 ENV = "dev"
 
-if ENV == "dev":
+if ENV == "prod":
     app.debug = True
     # configure the postgresql and pgadmin in your system to be able to use the database
     app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:12345@localhost/hypersearch"
@@ -350,4 +346,4 @@ def error(page_name):
 ###########################
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

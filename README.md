@@ -1,5 +1,5 @@
 # HyperSearch
-### - a web application to learn techniques for improving your google search skills
+- a web application to learn techniques for improving your google search skills
 
 ## CITS5505 Agile Web Application
 
@@ -79,8 +79,7 @@ Feedback and feature suggestions can be sent to akhil.bitsian2013@gmail.com
 
 
 Thank and regards,
-Akhil Eaga
-Arjun Panicker
+Akhil Eaga and Arjun Panicker
 
 
 
