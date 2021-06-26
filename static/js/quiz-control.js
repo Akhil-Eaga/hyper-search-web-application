@@ -3,56 +3,56 @@
 
 const quiz = [
    {
-      q:'Which flag will help remove certain pages from google search result ?',
-      options:['-Keyword','+Keyword','*Keyword'],
-      answer:0
+      q: 'Which flag will help remove certain pages from google search result ?',
+      options: ['-Keyword', '+Keyword', '*Keyword'],
+      answer: 0
    },
    {
-      q:'Which flag will help you locate instagram handle of Scarlett Johansson?',
-      options:['Scarlett Johansson +instagram','Scarlett Johansson @instagram','Scarlett Johansson'],
-      answer:1
+      q: 'Which flag will help you locate instagram handle of Scarlett Johansson?',
+      options: ['Scarlett Johansson +instagram', 'Scarlett Johansson @instagram', 'Scarlett Johansson'],
+      answer: 1
    },
    {
-      q:'Which flag will help you find pages with the EXACT words within search results.',
-      options:['"Keyword"','#Keyword#', '-Keyword-'],
-      answer:0
+      q: 'Which flag will help you find pages with the EXACT words within search results.',
+      options: ['"Keyword"', '#Keyword#', '-Keyword-'],
+      answer: 0
    },
    {
-      q:'Which method will help you to easily find Angry One Punch Man on google search?',
-      options:['one punch man angry','one/punch/man/angry ','one-punch-man-angry '],
-      answer:2
+      q: 'Which method will help you to easily find Angry One Punch Man on google search?',
+      options: ['one punch man angry', 'one/punch/man/angry ', 'one-punch-man-angry '],
+      answer: 2
    },
    {
-      q:'Which flag will help you find a leather phone case on JB Hifi?',
-      options:['Leather Phone Case site:jbhifi.com.au','Leather Phone Case link:jbhifi.com.au','Leather Phone Case related:jbhifi.com.au'],
-      answer:0
+      q: 'Which flag will help you find a leather phone case on JB Hifi?',
+      options: ['Leather Phone Case site:jbhifi.com.au', 'Leather Phone Case link:jbhifi.com.au', 'Leather Phone Case related:jbhifi.com.au'],
+      answer: 0
    },
    {
-     q:" Which method will help you find news articles from 7news?",
-     options:['news find:7news.com.au','news source:7news.com.au','news podcast:7news.com.au'],
-     answer:1
+      q: " Which method will help you find news articles from 7news?",
+      options: ['news find:7news.com.au', 'news source:7news.com.au', 'news podcast:7news.com.au'],
+      answer: 1
    },
    {
-     q:'What flag will you use to filter results containing either Milk chocolates or Dark chocolates?',
-     options:['Milk chocolates :: Dark chocolates','Milk chocolates OR Dark chocolates','Milk chocolates AND Dark chocolates'],
-     answer:1
+      q: 'What flag will you use to filter results containing either Milk chocolates or Dark chocolates?',
+      options: ['Milk chocolates :: Dark chocolates', 'Milk chocolates OR Dark chocolates', 'Milk chocolates AND Dark chocolates'],
+      answer: 1
    },
    {
-     q:'Which flag will help you easily find the user manual PDF of your new Samsung Washing Machine?',
-     options:['washing-machine-model filetype:pptx site:samsung.com','washing-machine-model datatype:pdf site:samsung.com','washing-machine-model filetype:pdf site:samsung.com'],
-     answer:2,
+      q: 'Which flag will help you easily find the user manual PDF of your new Samsung Washing Machine?',
+      options: ['washing-machine-model filetype:pptx site:samsung.com', 'washing-machine-model datatype:pdf site:samsung.com', 'washing-machine-model filetype:pdf site:samsung.com'],
+      answer: 2,
    },
    {
-     q:"How will you search music whose lyrics you don't remember?",
-     options:['Chorus*lyrics*vocals','Chorus@lyrics@vocals','Chorus#lyrics#vocals'],
-     answer:0,
+      q: "How will you search music whose lyrics you don't remember?",
+      options: ['Chorus*lyrics*vocals', 'Chorus@lyrics@vocals', 'Chorus#lyrics#vocals'],
+      answer: 0,
    },
    {
-      q:"Which flag will help you find trending topics on twitter easily?",
-      options:['#Trending','Trending on Twitter', '#trending @twitter'],
-      answer:2,
-    }
-  ]
+      q: "Which flag will help you find trending topics on twitter easily?",
+      options: ['#Trending', 'Trending on Twitter', '#trending @twitter'],
+      answer: 2,
+   }
+]
 
 
 // Control Script
@@ -74,15 +74,15 @@ let attempt = 0;
 
 
 // push the questions into  availableQuestions Array
-function setAvailableQuestions(){
+function setAvailableQuestions() {
    const totalQuestion = quiz.length;
-   for(let i=0; i<totalQuestion; i++){
+   for (let i = 0; i < totalQuestion; i++) {
       availableQuestions.push(quiz[i]);
    }
 }
 
 // set question number and question and options
-function getNewQuestion(){
+function getNewQuestion() {
 
 
    // set question number 
@@ -96,10 +96,10 @@ function getNewQuestion(){
    questionText.innerHTML = currentQuestion.q;
 
    // get the position of 'questionIndex' from the availableQuestion Array
-   const index1= availableQuestions.indexOf(questionIndex);
+   const index1 = availableQuestions.indexOf(questionIndex);
 
    // remove the 'questionIndex' from the availableQuestion Array, so that the question does not repeat
-   availableQuestions.splice(index1,1);
+   availableQuestions.splice(index1, 1);
 
 
    // set options
@@ -108,34 +108,34 @@ function getNewQuestion(){
 
 
    // push options into availableOptions Array
-   for(let i=0; i<optionLen; i++){
+   for (let i = 0; i < optionLen; i++) {
       availableOptions.push(i)
    }
    optionContainer.innerHTML = '';
    let animationDelay = 0.15;
 
    // create options in html
-   for(let i=0; i<optionLen; i++){
+   for (let i = 0; i < optionLen; i++) {
 
       // random option
       const optonIndex = availableOptions[Math.floor(Math.random() * availableOptions.length)];
 
       // get the position of 'optonIndex' from the availableOptions Array
-      const index2 =  availableOptions.indexOf(optonIndex);
+      const index2 = availableOptions.indexOf(optonIndex);
 
 
       // remove the 'optionIndex' from the availableOptions Array , so that the option does not repeat
-      availableOptions.splice(index2,1);
+      availableOptions.splice(index2, 1);
       const option = document.createElement("div");
       option.innerHTML = currentQuestion.options[optonIndex];
       option.id = optonIndex;
 
       // add simple animation
-      option.style.animationDelay =animationDelay + 's';
+      option.style.animationDelay = animationDelay + 's';
       animationDelay = animationDelay + 0.15;
       option.className = "option";
       optionContainer.appendChild(option);
-      option.setAttribute("onclick","getResult(this)");
+      option.setAttribute("onclick", "getResult(this)");
    }
    // Log questions on console.
    console.log(availableQuestions)
@@ -144,44 +144,44 @@ function getNewQuestion(){
 }
 
 // get the result of current attempt question
-function getResult(element){
-    const id = parseInt(element.id);
-    // get the answer by comparing the id of clicked option
-    if(id === currentQuestion.answer){
+function getResult(element) {
+   const id = parseInt(element.id);
+   // get the answer by comparing the id of clicked option
+   if (id === currentQuestion.answer) {
 
-       // set the green color to the correct option
-       element.classList.add("correct");
+      // set the green color to the correct option
+      element.classList.add("correct");
 
-       // add the indicator to correct mark
-       updateAnswerIndicator("correct");
-       correctAnswers++;
-    }
-    else{
+      // add the indicator to correct mark
+      updateAnswerIndicator("correct");
+      correctAnswers++;
+   }
+   else {
 
-       // set the red color to the incorrect option
-       element.classList.add("wrong");
-       // add the indicator to wrong mark
-       updateAnswerIndicator("wrong");
+      // set the red color to the incorrect option
+      element.classList.add("wrong");
+      // add the indicator to wrong mark
+      updateAnswerIndicator("wrong");
 
-       // if the answer is incorrect then show the correct option by adding green color the correct option
-       const optionLen = optionContainer.children.length;
-       for(let i=0; i<optionLen; i++){
-          if(parseInt(optionContainer.children[i].id) === currentQuestion.answer){
-             optionContainer.children[i].classList.add("correct");  		
-          }
-       }   
-      
-    }
-  attempt++;
+      // if the answer is incorrect then show the correct option by adding green color the correct option
+      const optionLen = optionContainer.children.length;
+      for (let i = 0; i < optionLen; i++) {
+         if (parseInt(optionContainer.children[i].id) === currentQuestion.answer) {
+            optionContainer.children[i].classList.add("correct");
+         }
+      }
+
+   }
+   attempt++;
    // Make remaining options unclicable and enable next btn.
-  unclickableOptions();
-  enableNextBtn();
+   unclickableOptions();
+   enableNextBtn();
 }
 
 // Make all the options unclickable once the user select a option.
-function unclickableOptions(){
+function unclickableOptions() {
    const optionLen = optionContainer.children.length;
-   for(let i=0 ; i<optionLen; i++){
+   for (let i = 0; i < optionLen; i++) {
 
       // Add to already-answered classlist.
       optionContainer.children[i].classList.add("already-answered");
@@ -189,39 +189,39 @@ function unclickableOptions(){
 }
 
 // Function to show progress bar
-function answersIndicator(){
-     answersIndicatorContainer.innerHTML = '';
-     const totalQuestion = questionLimit;
-     for(let i=0; i<totalQuestion; i++){
-         const indicator = document.createElement("div");
-         answersIndicatorContainer.appendChild(indicator);
-     }
+function answersIndicator() {
+   answersIndicatorContainer.innerHTML = '';
+   const totalQuestion = questionLimit;
+   for (let i = 0; i < totalQuestion; i++) {
+      const indicator = document.createElement("div");
+      answersIndicatorContainer.appendChild(indicator);
+   }
 }
 
 // function to update the progress bar
-function updateAnswerIndicator(markType){
-    answersIndicatorContainer.children[questionCounter-1].classList.add(markType);
+function updateAnswerIndicator(markType) {
+   answersIndicatorContainer.children[questionCounter - 1].classList.add(markType);
 }
 
 // Next question function
-function next(){
-  if(questionCounter === questionLimit){
-       quizOver();
-  }
-  else{
+function next() {
+   if (questionCounter === questionLimit) {
+      quizOver();
+   }
+   else {
       disableNextBtn();
       getNewQuestion();
-      
-  }
+
+   }
 }
 
 // Function to enable and disable the Next Button.
-function disableNextBtn(){ document.getElementById("next-btn").style.display = "none";}
-function enableNextBtn(){ document.getElementById("next-btn").style.display = "block";}
+function disableNextBtn() { document.getElementById("next-btn").style.display = "none"; }
+function enableNextBtn() { document.getElementById("next-btn").style.display = "block"; }
 
 
 // Quiz over functions
-function quizOver(){
+function quizOver() {
 
    // hide quiz Box
    questionsBox.classList.add("hide");
@@ -233,56 +233,56 @@ function quizOver(){
 
 
 // get the quiz Result and update the document.
-function quizResult(){
-  resultBox.querySelector(".total-question").innerHTML = questionLimit;
-  resultBox.querySelector(".total-attempt").innerHTML = attempt;
-  resultBox.querySelector(".total-correct").innerHTML = correctAnswers;
-  resultBox.querySelector(".total-wrong").innerHTML = attempt - correctAnswers;
-  const percentage = (correctAnswers/questionLimit)*100;
-  resultBox.querySelector(".percentage").innerHTML =percentage.toFixed(2) + "%";
-  resultBox.querySelector(".total-score").innerHTML =correctAnswers +" / " + questionLimit;
-  
-  // update the results to send it back to flask server
-  updateResults()
+function quizResult() {
+   resultBox.querySelector(".total-question").innerHTML = questionLimit;
+   resultBox.querySelector(".total-attempt").innerHTML = attempt;
+   resultBox.querySelector(".total-correct").innerHTML = correctAnswers;
+   resultBox.querySelector(".total-wrong").innerHTML = attempt - correctAnswers;
+   const percentage = (correctAnswers / questionLimit) * 100;
+   resultBox.querySelector(".percentage").innerHTML = percentage.toFixed(2) + "%";
+   resultBox.querySelector(".total-score").innerHTML = correctAnswers + " / " + questionLimit;
+
+   // update the results to send it back to flask server
+   updateResults()
 }
 
 
 // Function to reset the quiz vars
-function resetQuiz(){
+function resetQuiz() {
    questionCounter = 0;
    correctAnswers = 0;
    attempt = 0;
    availableQuestions = [];
 }
 
-function tryAgainQuiz(){
-    // hide the resultBox
-    resultBox.classList.add("hide");
-    // show the questionsBox
-    questionsBox.classList.remove("hide");
-    resetQuiz();
-    startQuiz();
+function tryAgainQuiz() {
+   // hide the resultBox
+   resultBox.classList.add("hide");
+   // show the questionsBox
+   questionsBox.classList.remove("hide");
+   resetQuiz();
+   startQuiz();
 }
 
-function goToHome(){
+function goToHome() {
    // hide result Box
    resultBox.classList.add("hide");
-  prevResultBox.classList.add("hide");
+   prevResultBox.classList.add("hide");
 
    // show home box
    instructionBox.classList.remove("hide");
    resetQuiz();
 }
 
-function goToDashboard(){
-  // hide result Box
-  window.location.href = '/dashboard';
+function goToDashboard() {
+   // hide result Box
+   window.location.href = '/dashboard';
 }
 
 // #### STARTING POINT ####
 
-function startQuiz(){
-   
+function startQuiz() {
+
    // hide home box 
    instructionBox.classList.add("hide");
    prevResultBox.classList.add("hide")
@@ -299,32 +299,32 @@ function startQuiz(){
 }
 
 // Display total number of questions dynamically.
-window.onload = function (){
-  instructionBox.querySelector(".total-question").innerHTML = questionLimit;
+window.onload = function () {
+   instructionBox.querySelector(".total-question").innerHTML = questionLimit;
 }
 
 
 // ------------ Ajax to get the results back to database.------------//
 
-var results= { 'output': [questionLimit, 0,0,0]};
+var results = { 'output': [questionLimit, 0, 0, 0] };
 
-function updateResults(){
-  results['output'] = [questionLimit, attempt, correctAnswers, attempt-correctAnswers];
+function updateResults() {
+   results['output'] = [questionLimit, attempt, correctAnswers, attempt - correctAnswers];
 }
 
 
 // Function that sends  json data back to flask        
-function saveResults(){
+function saveResults() {
    console.log("Sending save request");
    $.ajax({
-         type: "POST",
-         url:"http://127.0.0.1:5000/quiz",
-         data: JSON.stringify(results),
-         dataType: 'json'
-   }).done(function(data){ 
+      type: "POST",
+      url: "/quiz",
+      data: JSON.stringify(results),
+      dataType: 'json'
+   }).done(function (data) {
       console.log(data)
       console.log("Results Saved.");
-      
+
    });
 }
 // ------------ end of Ajax.------------ //
@@ -333,28 +333,28 @@ function saveResults(){
 
 
 // ------------ Past Quiz Function ------------ //
-function pastQuiz(){
+function pastQuiz() {
 
-  var prevAttempt = document.getElementById("pAttempt").innerHTML;
-  var prevWrong = document.getElementById("pWrong").innerHTML;
-  var prevCorrect = document.getElementById("pCorrect").innerHTML;
-  var prevScore = document.getElementById("pScore").innerHTML;
-  
-  if (prevAttempt == 0){
-     alert("You have not attemped the quiz yet, give it a go!")
-  }
-  else {
-     
-     instructionBox.classList.add("hide")
-     prevResultBox.classList.remove("hide") 
-     prevResultBox.querySelector(".total-question").innerHTML = questionLimit;     
-     prevResultBox.querySelector(".total-attempt").innerHTML = prevAttempt;
-     prevResultBox.querySelector(".total-correct").innerHTML = prevCorrect;
-     prevResultBox.querySelector(".total-wrong").innerHTML = prevWrong;
-     prevResultBox.querySelector(".total-score").innerHTML =prevScore *100 + "%";
+   var prevAttempt = document.getElementById("pAttempt").innerHTML;
+   var prevWrong = document.getElementById("pWrong").innerHTML;
+   var prevCorrect = document.getElementById("pCorrect").innerHTML;
+   var prevScore = document.getElementById("pScore").innerHTML;
 
-  }
-  
+   if (prevAttempt == 0) {
+      alert("You have not attemped the quiz yet, give it a go!")
+   }
+   else {
+
+      instructionBox.classList.add("hide")
+      prevResultBox.classList.remove("hide")
+      prevResultBox.querySelector(".total-question").innerHTML = questionLimit;
+      prevResultBox.querySelector(".total-attempt").innerHTML = prevAttempt;
+      prevResultBox.querySelector(".total-correct").innerHTML = prevCorrect;
+      prevResultBox.querySelector(".total-wrong").innerHTML = prevWrong;
+      prevResultBox.querySelector(".total-score").innerHTML = prevScore * 100 + "%";
+
+   }
+
 }
 
 
