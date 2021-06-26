@@ -79,7 +79,8 @@ Feedback and feature suggestions can be sent to akhil.bitsian2013@gmail.com
 
 
 Thank and regards,
-Akhil Eaga and Arjun Panicker
+Akhil Eaga
+Arjun Panicker
 
 
 
