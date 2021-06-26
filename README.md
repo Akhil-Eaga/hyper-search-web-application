@@ -1,6 +1,9 @@
 # HyperSearch
 - a web application to learn techniques for improving your google search skills
 
+## Deployed to Heroku
+- [https://hyper-search.herokuapp.com/](https://hyper-search.herokuapp.com/)
+
 ## CITS5505 Agile Web Application
 
 Repo for collaborating on the CITS5508 Project 2 to build a responsive tutorial web application
