@@ -16,7 +16,20 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 # app initialization and configuration settings
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "jkshdfkafkanvjjgbajlgbsldfgjlfngbjhlsbfgjsbgjlsbdfgjklsbdfgjklsjklgjkl"
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
+
+
+
+# change the ENV to anything other than "dev" to deploy the app in production setup
+ENV = "dev"
+
+if ENV == "dev":
+    app.debug = True
+    # configure the postgresql and pgadmin in your system to be able to use the database
+    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:12345@localhost/hypersearch"
+else:
+    # the postgres link here is the heroku deployment link
+    app.config["SQLALCHEMY_DATABASE_URI"] =  "postgresql://rjjgntmyfdyssd:c719e1a2530697ecb79aa6dda7f4665a544c43cc2c17875c0ee9a37a907c1fdd@ec2-52-86-25-51.compute-1.amazonaws.com:5432/d76gq4haj7si3a"
+
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # database initialization, connection and the login manager configuration

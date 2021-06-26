@@ -1,1 +1,0 @@
-When the "selenium_test.py" was executed on Linux and Windows 10, depending on the screen resolution, scaling and wait period for response, there is an error that is generated which is not observed when the same test suite was run using the Selenium IDE on Google Chrome browser.
