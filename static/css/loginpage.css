@@ -7,7 +7,7 @@ body {
 }
 
 .loginpage-form-container {
-    max-width: 50%;
+    max-width: 60%;
     color: black;
     text-align: center;
     background-color: #ffffff;
@@ -17,19 +17,38 @@ body {
     margin-top: 5rem;
 }
 
+
+
+@media only screen and (max-width: 1000px) {
+
+    .loginpage-form-container {
+        max-width: 70%;
+        padding: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+
+    .loginpage-form-container {
+        max-width: 90%;
+        padding: 1rem;
+    }
+}
+
+
 .form-signin {
     padding: 1rem;
 }
 
 .form-control{
-    width: 50%;
+    /* width: 50%; */
     color: black;
     margin: auto;
 
 }
 
 .form-control:hover{
-    width: 50%;
+    /* width: 50%; */
     color: black;
     margin: auto;
     box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.1);
