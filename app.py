@@ -24,6 +24,10 @@ if ENV == "prod":
     app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:12345@localhost/hypersearch"
 else:
     # the postgres link here is the heroku deployment link
+    DATABASE_URL = os.environ['DATABASE_URL']
+    print("The db url found from the os environ is " + DATABASE_URL)
+    print("--------------------------------------------------------")
+    print("The db url copied and pasted from the heroku is " + "postgresql://rjjgntmyfdyssd:c719e1a2530697ecb79aa6dda7f4665a544c43cc2c17875c0ee9a37a907c1fdd@ec2-52-86-25-51.compute-1.amazonaws.com:5432/d76gq4haj7si3a")
     app.config["SQLALCHEMY_DATABASE_URI"] =  "postgresql://rjjgntmyfdyssd:c719e1a2530697ecb79aa6dda7f4665a544c43cc2c17875c0ee9a37a907c1fdd@ec2-52-86-25-51.compute-1.amazonaws.com:5432/d76gq4haj7si3a"
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -329,10 +333,9 @@ def quiz():
         db.session.add(user)
         db.session.commit()
         resp_dic={'msg':"Results Saved."}
-        resp = jsonify(resp_dic)      
-        return resp        
+        resp = jsonify(resp_dic)
+        return resp
     else:
-
         return render_template("quiz.html",name = current_user.username.lower().capitalize(),page_title = "Quiz", TotalAttempt= user.attempt, pWrong = user.wrong , pCorrect= user.correct, pScore = user.score)
 
 
