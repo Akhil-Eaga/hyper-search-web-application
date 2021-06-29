@@ -23,6 +23,7 @@ if ENV == "prod":
     # configure the postgresql and pgadmin in your system to be able to use the database
     app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:12345@localhost/hypersearch"
 else:
+    app.debug = False
     # the postgres link here is the heroku deployment link
 
     # as the postgres link might be changed by heroku, it is better to use the os.environ to extract the DATABASE_URL
