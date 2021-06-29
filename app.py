@@ -24,11 +24,16 @@ if ENV == "prod":
     app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:12345@localhost/hypersearch"
 else:
     # the postgres link here is the heroku deployment link
+
+    # as the postgres link might be changed by heroku, it is better to use the os.environ to extract the DATABASE_URL
     DATABASE_URL = os.environ['DATABASE_URL']
-    print("The db url found from the os environ is " + DATABASE_URL)
-    print("--------------------------------------------------------")
-    print("The db url copied and pasted from the heroku is " + "postgresql://rjjgntmyfdyssd:c719e1a2530697ecb79aa6dda7f4665a544c43cc2c17875c0ee9a37a907c1fdd@ec2-52-86-25-51.compute-1.amazonaws.com:5432/d76gq4haj7si3a")
-    app.config["SQLALCHEMY_DATABASE_URI"] =  "postgresql://rjjgntmyfdyssd:c719e1a2530697ecb79aa6dda7f4665a544c43cc2c17875c0ee9a37a907c1fdd@ec2-52-86-25-51.compute-1.amazonaws.com:5432/d76gq4haj7si3a"
+    # os.environ() gives the link with "postgres://blahblahblah" so replacing it with "postgresql://blahblahblah"
+    db_url_split = DATABASE_URL.split("://")
+    db_url_split[0] = db_url_split[0] + "ql"
+    DATABASE_URL = "://".join(db_url_split)
+
+    # configuring the app's DATABASE URI using the DATABASE_URL formed above
+    app.config["SQLALCHEMY_DATABASE_URI"] =  DATABASE_URL
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
